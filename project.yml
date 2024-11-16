@@ -15,3 +15,4 @@ targets:
         TARGETED_DEVICE_FAMILY: 1,2
         INFOPLIST_FILE: Sample/Resources/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.sample.cpfandcnpjtools
+        PRODUCT_MODULE_NAME: SampleApp
