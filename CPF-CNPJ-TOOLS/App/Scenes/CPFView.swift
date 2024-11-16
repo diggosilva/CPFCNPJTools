@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol CPFViewDelegate: AnyObject {
+    func validateCPF()
+    func generateCPF()
+}
+
 class CPFView: UIView {
     lazy var backgroundView: UIView = {
         let bgView = UIView()
@@ -67,6 +72,7 @@ class CPFView: UIView {
     }()
     
     var cpfResult = ""
+    weak var delegate: CPFViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -106,7 +112,7 @@ class CPFView: UIView {
     }
     
     @objc private func validateCPF() {
-        CPFValidator().validate(cpf: cpfResult)
+        delegate?.validateCPF()
     }
     
     @objc private func generateCPF() {

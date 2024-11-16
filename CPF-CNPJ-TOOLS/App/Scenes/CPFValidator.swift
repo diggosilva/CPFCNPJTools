@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum CPFStatus {
+    case valid // CPF válido
+    case invalid // CPF inválido
+    case invalidFormat // CPF com formato errado (ex: caracteres não numéricos ou número de dígitos incorretos)
+    case equalDigits // CPF com todos os dígitos iguais (ex: 111.111.111-11, que é inválido por ser um número repetido)
+    case checkFailed // CPF com falha nos cálculos dos dígitos verificadores
+}
+
 class CPFValidator {
     func validate(cpf: String) -> Bool {
         // Limpa o CPF, removendo caracteres não numéricos
