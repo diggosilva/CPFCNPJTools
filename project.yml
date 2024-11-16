@@ -1,0 +1,17 @@
+name: Sample
+options:
+  postGenCommand: pod install
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: 15.0
+targets:
+  SampleApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sample/
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: 1,2
+        INFOPLIST_FILE: Sample/Resources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.sample.cpfandcnpjtools

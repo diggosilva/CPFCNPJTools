@@ -5,6 +5,7 @@
 //  Created by Diggo Silva on 16/11/24.
 //
 
+import CPFCNPJTools
 import UIKit
 
 protocol CPFViewDelegate: AnyObject {
