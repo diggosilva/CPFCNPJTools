@@ -8,7 +8,7 @@
 import Foundation
 
 class CPFValidator {
-    func validate(_ cpf: String) -> Bool {
+    func validate(cpf: String) -> Bool {
         // Limpa o CPF, removendo caracteres não numéricos
         let cleanedCPF = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
@@ -44,5 +44,21 @@ class CPFValidator {
             print("DEBUG: Número de CPF inválido.")
             return false
         }
+    }
+    
+    func generateCPF() -> Bool {
+        var get9RandomNumbers = (0..<9).compactMap({ _ in Int.random(in: 0...9) })
+        
+        // Calcula o primeiro dígito verificador
+        let calculated1stCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: get9RandomNumbers, multiplyBy: 10)).truncatingRemainder(dividingBy: 11)
+        calculated1stCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated1stCheckDigit))
+        
+        // Calcula o segundo dígito verificador
+        let calculated2ndCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: get9RandomNumbers, multiplyBy: 11)).truncatingRemainder(dividingBy: 11)
+        calculated2ndCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated2ndCheckDigit))
+        
+        let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
+        print("DEBUG: Generado CPF Fictício: \(formattedCPF(generatedFakeCPF))")
+        return true
     }
 }

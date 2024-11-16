@@ -62,6 +62,7 @@ class CPFView: UIView {
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         btn.backgroundColor = .systemIndigo
+        btn.addTarget(self, action: #selector(generateCPF), for: .touchUpInside)
         return btn
     }()
     
@@ -105,7 +106,11 @@ class CPFView: UIView {
     }
     
     @objc private func validateCPF() {
-        CPFValidator().validate(cpfResult)
+        CPFValidator().validate(cpf: cpfResult)
+    }
+    
+    @objc private func generateCPF() {
+        CPFValidator().generateCPF()
     }
     
     private func setupView() {
