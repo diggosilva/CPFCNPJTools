@@ -17,9 +17,7 @@ enum CPFStatus {
 
 public class CPFValidator {
   
-  public init() {
-    
-  }
+  public init() {}
   
   public func validate(cpf: String) -> Bool {
     // Limpa o CPF, removendo caracteres não numéricos
@@ -59,7 +57,7 @@ public class CPFValidator {
     }
   }
   
-  public func generateCPF() -> Bool {
+    public func generateCPF() -> String {
     var get9RandomNumbers = (0..<9).compactMap({ _ in Int.random(in: 0...9) })
     
     // Calcula o primeiro dígito verificador
@@ -71,8 +69,8 @@ public class CPFValidator {
     calculated2ndCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated2ndCheckDigit))
     
     let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
-    print("DEBUG: Generado CPF Fictício: \(formattedCPF(generatedFakeCPF))")
-    return true
+    print("DEBUG: Gerado CPF Fictício: \(formattedCPF(generatedFakeCPF))")
+    return "\(formattedCPF(generatedFakeCPF))"
   }
   
   func formattedCPF(_ cpf: String) -> String {
@@ -91,5 +89,4 @@ public class CPFValidator {
     }
     return checkSum
   }
-  
 }
