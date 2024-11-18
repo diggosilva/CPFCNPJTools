@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CPFCNPJTools
 
 class CPFViewController: UIViewController {
     
@@ -37,8 +38,21 @@ class CPFViewController: UIViewController {
 
 extension CPFViewController: CPFViewDelegate {
     func validateCPF() {
-        var cpf = cpfView.cpfResult.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        print("Tá Tentando Validar: \(cpf)")
+        let cpf = cpfView.cpfResult.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        
+        let cpfResult = CPFValidator().validate(cpf: cpf)
+        switch cpfResult {
+        case .valid:
+            cpfView.resultLabel.text = "CPF válido: \(cpf)"
+        case .cpfNull:
+            cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
+        case .invalidFormat:
+            cpfView.resultLabel.text = "CPF inválido.\nDeve ter 11 dígitos (apenas números)."
+        case .equalDigits:
+            cpfView.resultLabel.text = "CPF inválido.\nTodos os dígitos são iguais."
+        case .invalid:
+            cpfView.resultLabel.text = "Número de CPF inválido."
+        }
     }
     
     func generateCPF() {
