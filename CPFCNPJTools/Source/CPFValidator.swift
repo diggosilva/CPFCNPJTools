@@ -51,7 +51,7 @@ public class CPFValidator {
         
         // Compara os dígitos verificadores calculados com os fornecidos
         if firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
-//            print("DEBUG: CPF válido: \(formattedCPF(cleanedCPF))")
+            print("DEBUG: CPF válido: \(formattedCPF(cleanedCPF))")
             return .valid
         } else {
 //            print("DEBUG: Número de CPF inválido.")
@@ -71,7 +71,7 @@ public class CPFValidator {
         calculated2ndCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated2ndCheckDigit))
         
         let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
-        print("DEBUG: Gerado CPF Fictício: \(formattedCPF(generatedFakeCPF))")
+//        print("DEBUG: Gerado CPF Fictício: \(formattedCPF(generatedFakeCPF))")
         return "\(formattedCPF(generatedFakeCPF))"
     }
     

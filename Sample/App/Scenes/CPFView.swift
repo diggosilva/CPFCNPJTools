@@ -17,13 +17,13 @@ class CPFView: UIView {
     lazy var backgroundView: UIView = {
         let bgView = UIView()
         bgView.translatesAutoresizingMaskIntoConstraints = false
-        bgView.backgroundColor = .white // Cor de fundo que você quiser
-        bgView.layer.cornerRadius = 50 // Defina o valor do raio de arredondamento
+        bgView.backgroundColor = .white
+        bgView.layer.cornerRadius = 50
         bgView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner] // Apenas os cantos superior esquerdo e inferior direito
         bgView.layer.shadowColor = UIColor.black.cgColor
         bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        bgView.layer.shadowOpacity = 0.5 // default 0.0
-        bgView.layer.shadowRadius = 5.0 // default 3.0
+        bgView.layer.shadowOpacity = 0.5
+        bgView.layer.shadowRadius = 5.0
         bgView.layer.borderWidth = 1
         bgView.layer.borderColor = UIColor.systemGray2.cgColor
         return bgView
@@ -117,7 +117,7 @@ class CPFView: UIView {
     }
     
     @objc private func generateCPF() {
-        CPFValidator().generateCPF()
+        delegate?.generateCPF()
     }
     
     private func setupView() {
