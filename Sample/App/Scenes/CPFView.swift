@@ -87,15 +87,15 @@ class CPFView: UIView {
     @objc private func cpfTextFieldMask() {
         // Remove todos os caracteres não numéricos
         var originalText = textField.text?.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        
+
         // Se o texto exceder 11 caracteres, limitamos a 11
         if originalText?.count ?? 0 > 11 {
             originalText = String(originalText?.prefix(11) ?? "")
         }
-        
+
         // Inicializa o texto mascarado
         var maskedText = ""
-        
+
         // Aplica a máscara
         if let unmaskedText = originalText {
             for (index, char) in unmaskedText.enumerated() {
