@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		2EAA816B8E8297034698E3AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EE24CF83BD6EEEEED96506C /* LaunchScreen.storyboard */; };
 		34503E5BE8E4C90396195119 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647B79D5E34C07DB6867D6D6 /* Extensions.swift */; };
 		559F1A026BC6E6D3FBC5CA88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21553A6A593FFA854997D477 /* AppDelegate.swift */; };
+		92381D1B2CED5018002D7219 /* CNPJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92381D1A2CED5018002D7219 /* CNPJView.swift */; };
+		92381D1D2CED5381002D7219 /* CNPJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92381D1C2CED5381002D7219 /* CNPJViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +28,10 @@
 		51658189994CE5844D7CE0EB /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.release.xcconfig"; path = "Target Support Files/Pods-SampleApp/Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		647B79D5E34C07DB6867D6D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8E77191BAA2E0452FC70E17A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		92381D1A2CED5018002D7219 /* CNPJView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJView.swift; sourceTree = "<group>"; };
+		92381D1C2CED5381002D7219 /* CNPJViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJViewController.swift; sourceTree = "<group>"; };
 		A2D51E0341E12B0CE6A02ED2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE2B6E9C037F8EF4F9C1BDA2 /* SampleApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2B6E9C037F8EF4F9C1BDA2 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44AC53C00C72EF4A3264E50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE7C20CC35E762671262A1F9 /* Pods-SampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.debug.xcconfig"; path = "Target Support Files/Pods-SampleApp/Pods-SampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +53,8 @@
 			children = (
 				41AE7E6C3603144C8E7E83AB /* CPFView.swift */,
 				13195CB9527D8078CE94C8E3 /* CPFViewController.swift */,
+				92381D1A2CED5018002D7219 /* CNPJView.swift */,
+				92381D1C2CED5381002D7219 /* CNPJViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -86,7 +92,6 @@
 				DE7C20CC35E762671262A1F9 /* Pods-SampleApp.debug.xcconfig */,
 				51658189994CE5844D7CE0EB /* Pods-SampleApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -157,8 +162,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = BD36F0AAEB93F6E9B7E99BCF /* Build configuration list for PBXProject "Sample" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -239,7 +242,9 @@
 			files = (
 				559F1A026BC6E6D3FBC5CA88 /* AppDelegate.swift in Sources */,
 				182FD2E6B9506A2255A8B628 /* CPFView.swift in Sources */,
+				92381D1D2CED5381002D7219 /* CNPJViewController.swift in Sources */,
 				258A43C085596AA3B61B72A3 /* CPFViewController.swift in Sources */,
+				92381D1B2CED5018002D7219 /* CNPJView.swift in Sources */,
 				34503E5BE8E4C90396195119 /* Extensions.swift in Sources */,
 				08FDC531F212824936EDA567 /* SceneDelegate.swift in Sources */,
 			);

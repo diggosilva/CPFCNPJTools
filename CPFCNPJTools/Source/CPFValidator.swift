@@ -72,7 +72,7 @@ public class CPFValidator {
         
         let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
         //        print("DEBUG: Gerado CPF Fictício: \(formattedCPF(generatedFakeCPF))")
-        return "\(formattedCPF(generatedFakeCPF))"
+        return formattedCPF(generatedFakeCPF)
     }
     
     func formattedCPF(_ cpf: String) -> String {

@@ -10,6 +10,7 @@
 		23031ED08A72B86B926FD72FBE81D374 /* Pods-SampleApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3251CA32B535471DF6A5CFE1080F90DA /* Pods-SampleApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA8F8181C052B332DA89138BD64D4F7 /* CPFCNPJTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B84B01E6B04C508E097427A6655EA0C7 /* CPFCNPJTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BE92B8FF81B60297A4CE213AAE2B849 /* Pods-SampleApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E716D0AC6D33B06F6C2DD20F2D5BDC /* Pods-SampleApp-dummy.m */; };
+		92381CEE2CED4437002D7219 /* CNPJValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92381CED2CED4437002D7219 /* CNPJValidator.swift */; };
 		9B20CED6FE38978BCCC3AD9F0D5AB48E /* CPFCNPJTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AED3316D27D1A5B0DEF8CBC101D7A68 /* CPFCNPJTools-dummy.m */; };
 		A9CA926DC113A0093B72B3469977DC38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		BE642237EC9462E9FE13BE428684F173 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -27,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods-SampleApp */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SampleApp"; path = Pods_SampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods_SampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AED3316D27D1A5B0DEF8CBC101D7A68 /* CPFCNPJTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CPFCNPJTools-dummy.m"; sourceTree = "<group>"; };
 		1F9AD55981AEDFBD3CE7AF4EEE3B6911 /* CPFValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CPFValidator.swift; path = CPFCNPJTools/Source/CPFValidator.swift; sourceTree = "<group>"; };
 		3251CA32B535471DF6A5CFE1080F90DA /* Pods-SampleApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SampleApp-umbrella.h"; sourceTree = "<group>"; };
@@ -35,16 +36,17 @@
 		43E716D0AC6D33B06F6C2DD20F2D5BDC /* Pods-SampleApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SampleApp-dummy.m"; sourceTree = "<group>"; };
 		464C932355FFDCFB32566AD274A3C7F0 /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		46E175478562555B9B4BF7635457E852 /* Pods-SampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SampleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		530D3863D260B778A64FAEF59E11B462 /* CPFCNPJTools.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CPFCNPJTools.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		530D3863D260B778A64FAEF59E11B462 /* CPFCNPJTools.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CPFCNPJTools.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		53A707811ED2C15AED14573FACB5A6D5 /* CPFCNPJTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CPFCNPJTools.debug.xcconfig; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7E9D4E788C1CED0751D5E51C2D263F1B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		7E9D4E788C1CED0751D5E51C2D263F1B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		92381CED2CED4437002D7219 /* CNPJValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CNPJValidator.swift; path = CPFCNPJTools/Source/CNPJValidator.swift; sourceTree = "<group>"; };
 		98ABDF751C92DA801C6EF4548C4C23E0 /* CPFCNPJTools.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CPFCNPJTools.release.xcconfig; sourceTree = "<group>"; };
-		9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CPFCNPJTools; path = CPFCNPJTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPFCNPJTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C762CB72CBAA60F8FD0E081424E1828 /* CPFCNPJTools-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CPFCNPJTools-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A4833F666154794E20AD277755DE8372 /* Pods-SampleApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SampleApp-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A715E977819D73FDB283A62239346AA6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		A715E977819D73FDB283A62239346AA6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B84B01E6B04C508E097427A6655EA0C7 /* CPFCNPJTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CPFCNPJTools-umbrella.h"; sourceTree = "<group>"; };
 		C2C51F6E4CD86C5C420A7A0550428135 /* Pods-SampleApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SampleApp-frameworks.sh"; sourceTree = "<group>"; };
 		CF2F236F6204AAE73B8FA55E25D628DB /* Pods-SampleApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SampleApp.modulemap"; sourceTree = "<group>"; };
@@ -76,8 +78,8 @@
 		0E94D9D12E94614DD43F7997DDB9FA60 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools */,
-				1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods-SampleApp */,
+				9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools.framework */,
+				1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods_SampleApp.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				1F9AD55981AEDFBD3CE7AF4EEE3B6911 /* CPFValidator.swift */,
+				92381CED2CED4437002D7219 /* CNPJValidator.swift */,
 				44F7F7961BC648531D36ACA1AD243488 /* Pod */,
 				F44338514744A0F4A1F35A43C5666729 /* Support Files */,
 			);
@@ -215,7 +218,7 @@
 			);
 			name = CPFCNPJTools;
 			productName = CPFCNPJTools;
-			productReference = 9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools */;
+			productReference = 9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7EFCCFB3480AA7EDB90F9DDD3E9E1D93 /* Pods-SampleApp */ = {
@@ -234,7 +237,7 @@
 			);
 			name = "Pods-SampleApp";
 			productName = Pods_SampleApp;
-			productReference = 1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods-SampleApp */;
+			productReference = 1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods_SampleApp.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B20CED6FE38978BCCC3AD9F0D5AB48E /* CPFCNPJTools-dummy.m in Sources */,
+				92381CEE2CED4437002D7219 /* CNPJValidator.swift in Sources */,
 				E632EF8575624B093C088F480858563B /* CPFValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
