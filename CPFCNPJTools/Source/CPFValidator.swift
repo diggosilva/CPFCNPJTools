@@ -23,19 +23,13 @@ public class CPFValidator {
         // Clears the CPF, removing non-numeric characters
         let cleanedCPF = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
-        guard cleanedCPF.count > 0 else {
-            return .cpfNull
-        }
+        guard cleanedCPF.count > 0 else { return .cpfNull }
         
         // Checks if the CPF has 11 digits
-        guard cleanedCPF.count == 11, cleanedCPF.allSatisfy({ $0.isNumber }) else {
-            return .invalidFormat
-        }
+        guard cleanedCPF.count == 11, cleanedCPF.allSatisfy({ $0.isNumber }) else { return .invalidFormat }
         
         // Checks if all digits are the same
-        if Set(cleanedCPF).count == 1 {
-            return .equalDigits
-        }
+        if Set(cleanedCPF).count == 1 { return .equalDigits }
         
         // Divides the CPF into the first 9 digits and the last 2 (verification digits)
         let cpfBaseDigits = cleanedCPF.prefix(9).compactMap({ Int(String($0)) })
@@ -51,10 +45,8 @@ public class CPFValidator {
         
         // Compares the calculated verification digits with the provided ones
         if firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
-            //            print("DEBUG: CPF válido: \(formattedCPF(cleanedCPF))")
             return .valid
         } else {
-            //            print("DEBUG: Número de CPF inválido.")
             return .invalid
         }
     }
@@ -62,16 +54,13 @@ public class CPFValidator {
     public func generateCPF() -> String {
         var get9RandomNumbers = (0..<9).compactMap({ _ in Int.random(in: 0...9) })
         
-        // Calculates the first verification digit
         let calculated1stCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: get9RandomNumbers, multiplyBy: 10)).truncatingRemainder(dividingBy: 11)
         calculated1stCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated1stCheckDigit))
         
-        // Calculates the second verification digit
         let calculated2ndCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: get9RandomNumbers, multiplyBy: 11)).truncatingRemainder(dividingBy: 11)
         calculated2ndCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated2ndCheckDigit))
         
         let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
-        //        print("DEBUG: Gerado CPF Fictício: \(formattedCPF(generatedFakeCPF))")
         return formattedCPF(generatedFakeCPF)
     }
     
