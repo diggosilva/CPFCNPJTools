@@ -51,7 +51,7 @@ public class CPFValidator {
         
         // Compares the calculated verification digits with the provided ones
         if firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
-//            print("DEBUG: CPF válido: \(formattedCPF(cleanedCPF))")
+            //            print("DEBUG: CPF válido: \(formattedCPF(cleanedCPF))")
             return .valid
         } else {
             //            print("DEBUG: Número de CPF inválido.")
@@ -101,5 +101,24 @@ public class CPFValidator {
             label.text = text
             label.textColor = textColor
         }
+    }
+    
+    public func applyCPFMask(cpf: String) -> String {
+        var originalText = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        
+        if originalText.count > 11 {
+            originalText = String(originalText.prefix(11))
+        }
+        var maskedText = ""
+        
+        for (index, char) in originalText.enumerated() {
+            if index == 3 || index == 6 {
+                maskedText.append(".")
+            } else if index == 9 {
+                maskedText.append("-")
+            }
+            maskedText.append(char)
+        }
+        return maskedText
     }
 }

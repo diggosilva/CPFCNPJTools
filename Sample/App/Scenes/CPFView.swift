@@ -85,31 +85,10 @@ class CPFView: UIView {
     }
     
     @objc private func cpfTextFieldMask() {
-        // Remove todos os caracteres não numéricos
-        var originalText = textField.text?.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-
-        // Se o texto exceder 11 caracteres, limitamos a 11
-        if originalText?.count ?? 0 > 11 {
-            originalText = String(originalText?.prefix(11) ?? "")
-        }
-
-        // Inicializa o texto mascarado
-        var maskedText = ""
-
-        // Aplica a máscara
-        if let unmaskedText = originalText {
-            for (index, char) in unmaskedText.enumerated() {
-                if index == 3 || index == 6 {
-                    maskedText.append(".")
-                } else if index == 9 {
-                    maskedText.append("-")
-                }
-                maskedText.append(char)
-            }
-        }
-        // Atualiza o texto do campo
-        textField.text = maskedText
-        cpfResult = maskedText
+        let cpf = textField.text ?? ""
+        let maskCPF = CPFValidator.init().applyCPFMask(cpf: cpf)
+        textField.text = maskCPF
+        cpfResult = maskCPF
     }
     
     @objc private func validateCPF() {
