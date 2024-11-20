@@ -13,6 +13,7 @@
 		572AB5B1187F17C388BEDA1E63D782DD /* CPFValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A527D0B3D71ACC695EDC3123D88A16 /* CPFValidatorTests.swift */; };
 		5A5B4070A2D4EEBE9C3EAFDC1A324F54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		5BE92B8FF81B60297A4CE213AAE2B849 /* Pods-SampleApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E716D0AC6D33B06F6C2DD20F2D5BDC /* Pods-SampleApp-dummy.m */; };
+		9202BF012CEE5F20008E1589 /* CNPJValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9202BF002CEE5F20008E1589 /* CNPJValidatorTests.swift */; };
 		A9CA926DC113A0093B72B3469977DC38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		DB846D1497A27D2A4B31C319F5664209 /* CNPJValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA7E523C5A16CC4237ED445091940A3 /* CNPJValidator.swift */; };
 		E59FC8B53BA4280F09214359A2F76A0D /* CPFValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F02611BA2EFDE9638345F11494623D2 /* CPFValidator.swift */; };
@@ -40,23 +41,24 @@
 		0CA7E523C5A16CC4237ED445091940A3 /* CNPJValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CNPJValidator.swift; path = CPFCNPJTools/Source/CNPJValidator.swift; sourceTree = "<group>"; };
 		0DA0DDC453FA9C8EED9285F08C3C859A /* CPFCNPJTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CPFCNPJTools.modulemap; sourceTree = "<group>"; };
 		0F02611BA2EFDE9638345F11494623D2 /* CPFValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CPFValidator.swift; path = CPFCNPJTools/Source/CPFValidator.swift; sourceTree = "<group>"; };
-		1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods-SampleApp */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SampleApp"; path = Pods_SampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods_SampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3251CA32B535471DF6A5CFE1080F90DA /* Pods-SampleApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SampleApp-umbrella.h"; sourceTree = "<group>"; };
 		40F33348D14D1553D1F6ADC1D9F6ACB4 /* Pods-SampleApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SampleApp-Info.plist"; sourceTree = "<group>"; };
 		43E716D0AC6D33B06F6C2DD20F2D5BDC /* Pods-SampleApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SampleApp-dummy.m"; sourceTree = "<group>"; };
 		464C932355FFDCFB32566AD274A3C7F0 /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		46E175478562555B9B4BF7635457E852 /* Pods-SampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SampleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		5948186455513D90B69290EA897A58F9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		5948186455513D90B69290EA897A58F9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6E05B261F57D653ED38636DB6EA0127B /* CPFCNPJTools.unit-tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "CPFCNPJTools.unit-tests.debug.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7B15B8DA355FC33C9CCC51A5F9C72AC9 /* CPFCNPJTools.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CPFCNPJTools.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7B15B8DA355FC33C9CCC51A5F9C72AC9 /* CPFCNPJTools.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CPFCNPJTools.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		810336FABA9B5ABBB5F1695E21A148E6 /* CPFCNPJTools-Unit-Tests-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CPFCNPJTools-Unit-Tests-prefix.pch"; sourceTree = "<group>"; };
 		8146AC7DB13A7EFA6B27760B221AD747 /* CPFCNPJTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CPFCNPJTools-prefix.pch"; sourceTree = "<group>"; };
-		818B260E9FAA983EE98AB447241964A0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		818B260E9FAA983EE98AB447241964A0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		85C41D2CC01F9EF44AC95EB94883D50E /* CPFCNPJTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CPFCNPJTools-umbrella.h"; sourceTree = "<group>"; };
-		9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CPFCNPJTools; path = CPFCNPJTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A326C45C58ABD5264C564F3DF2692F3A /* CPFCNPJTools-Unit-Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "CPFCNPJTools-Unit-Tests"; path = "CPFCNPJTools-Unit-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9202BF002CEE5F20008E1589 /* CNPJValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJValidatorTests.swift; sourceTree = "<group>"; };
+		9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPFCNPJTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A326C45C58ABD5264C564F3DF2692F3A /* CPFCNPJTools-Unit-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPFCNPJTools-Unit-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4833F666154794E20AD277755DE8372 /* Pods-SampleApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SampleApp-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A51E986E33741C2E103E0E2FD6EF5697 /* CPFCNPJTools-Unit-Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CPFCNPJTools-Unit-Tests-Info.plist"; sourceTree = "<group>"; };
 		A9E6E97D8FE71AAEF8126067012A2A57 /* CPFCNPJTools.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CPFCNPJTools.debug.xcconfig; sourceTree = "<group>"; };
@@ -122,9 +124,9 @@
 		2FAF6CA722E5ACAAC31F1AE50B0CC0CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools */,
-				A326C45C58ABD5264C564F3DF2692F3A /* CPFCNPJTools-Unit-Tests */,
-				1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods-SampleApp */,
+				9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools.framework */,
+				A326C45C58ABD5264C564F3DF2692F3A /* CPFCNPJTools-Unit-Tests.xctest */,
+				1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods_SampleApp.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A527D0B3D71ACC695EDC3123D88A16 /* CPFValidatorTests.swift */,
+				9202BF002CEE5F20008E1589 /* CNPJValidatorTests.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -257,7 +260,7 @@
 			);
 			name = CPFCNPJTools;
 			productName = CPFCNPJTools;
-			productReference = 9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools */;
+			productReference = 9BEA343B904D107F1860EEAFA29FE459 /* CPFCNPJTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7EFCCFB3480AA7EDB90F9DDD3E9E1D93 /* Pods-SampleApp */ = {
@@ -276,7 +279,7 @@
 			);
 			name = "Pods-SampleApp";
 			productName = Pods_SampleApp;
-			productReference = 1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods-SampleApp */;
+			productReference = 1286CB6C8D1472DD6F3D2219B38DFF72 /* Pods_SampleApp.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F1CE82D154C032B6911B19A81A99E5DA /* CPFCNPJTools-Unit-Tests */ = {
@@ -295,7 +298,7 @@
 			);
 			name = "CPFCNPJTools-Unit-Tests";
 			productName = "CPFCNPJTools-Unit-Tests";
-			productReference = A326C45C58ABD5264C564F3DF2692F3A /* CPFCNPJTools-Unit-Tests */;
+			productReference = A326C45C58ABD5264C564F3DF2692F3A /* CPFCNPJTools-Unit-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -387,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				572AB5B1187F17C388BEDA1E63D782DD /* CPFValidatorTests.swift in Sources */,
+				9202BF012CEE5F20008E1589 /* CNPJValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

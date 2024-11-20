@@ -2,10 +2,10 @@ import XCTest
 import CPFCNPJTools
 
 class CPFValidatorTests: XCTestCase {
-  
-  override class func setUp() {
-    super.setUp()
-  }
+    
+    override class func setUp() {
+        super.setUp()
+    }
     
     func testValidateWhenTheCPFIsNilOrEmpty() {
         let sut = CPFValidator()
@@ -13,18 +13,18 @@ class CPFValidatorTests: XCTestCase {
         let result = sut.validate(cpf: invalidCPF)
         XCTAssertEqual(result, .cpfNull)
     }
-  
-  func testValidateWhenTheCPFIsInvalidFormatWith10Characters() {
-    let sut = CPFValidator()
-    let invalidCPF = "123456890"
-    let result = sut.validate(cpf: invalidCPF)
-    XCTAssertEqual(result, .invalidFormat)
-  }
+    
+    func testValidateWhenTheCPFIsInvalidFormatWith10Characters() {
+        let sut = CPFValidator()
+        let invalidCPF = "123456890"
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .invalidFormat)
+    }
     
     func testValidateWhenTheCPFIsEqualDigitsWith11Characters() {
         let sut = CPFValidator()
-        let invalideCPF = "11111111111"
-        let result = sut.validate(cpf: invalideCPF)
+        let invalidCPF = "11111111111"
+        let result = sut.validate(cpf: invalidCPF)
         XCTAssertEqual(result, .equalDigits)
     }
     
@@ -35,17 +35,16 @@ class CPFValidatorTests: XCTestCase {
         XCTAssertEqual(result, .valid)
     }
     
-    func testValidateWhenTheCPFIsInvalid() {
-      let sut = CPFValidator()
-      let invalidCPF = "12345678901"
-      let result = sut.validate(cpf: invalidCPF)
-      XCTAssertEqual(result, .invalid)
+    func testValidateWhenTheCPFIsInvalidWith14Characters() {
+        let sut = CPFValidator()
+        let invalidCPF = "12345678901"
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .invalid)
     }
     
-    func testValidateWhenTheCPFIsGenerated() {
+    func testValidateWhenTheCPFFakeIsGenerated() {
         let sut = CPFValidator()
         let result = sut.generateCPF()
-        
         XCTAssertFalse(result.isEmpty, "O CPF gerado não deve ser vazio")
         
         // Expressão regular para verificar o formato do CPF
@@ -56,7 +55,7 @@ class CPFValidatorTests: XCTestCase {
         // Verifique se há uma correspondência
         XCTAssertNotNil(match, "O CPF gerado não tem o formato esperado")
     }
-
+    
     func testValidateWhenTheCPFIsMasked() {
         let sut = CPFValidator()
         let unmaskedCPF = "12345678910"
@@ -64,9 +63,9 @@ class CPFValidatorTests: XCTestCase {
         let result = sut.applyCPFMask(cpf: unmaskedCPF)
         XCTAssertEqual(result, expectedMaskedCPF)
     }
-  
-  override class func tearDown() {
-    super.tearDown()
-  }
-  
+    
+    override class func tearDown() {
+        super.tearDown()
+    }
+    
 }
