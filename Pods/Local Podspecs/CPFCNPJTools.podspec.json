@@ -19,5 +19,12 @@
   "platforms": {
     "ios": "13.0"
   },
-  "source_files": "CPFCNPJTools/Source/*.swift"
+  "source_files": "CPFCNPJTools/Source/*.swift",
+  "testspecs": [
+    {
+      "name": "Tests",
+      "test_type": "unit",
+      "source_files": "CPFCNPJTools/Tests/*.swift"
+    }
+  ]
 }

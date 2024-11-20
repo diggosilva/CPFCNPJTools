@@ -1,16 +1,18 @@
 PODS:
   - CPFCNPJTools (0.1)
+  - CPFCNPJTools/Tests (0.1)
 
 DEPENDENCIES:
   - CPFCNPJTools (from `./CPFCNPJTools.podspec`)
+  - CPFCNPJTools/Tests (from `./CPFCNPJTools.podspec`)
 
 EXTERNAL SOURCES:
   CPFCNPJTools:
     :path: "./CPFCNPJTools.podspec"
 
 SPEC CHECKSUMS:
-  CPFCNPJTools: 8eb75360a8d1c4b5e337ce18979d4dcc4b5829d0
+  CPFCNPJTools: ea4cf41585d0092d1f5a813df4ad58c2eaa75bdf
 
-PODFILE CHECKSUM: 308426cf3f10fd34f18fb0863e08ce49c426b17f
+PODFILE CHECKSUM: 9d96ca58cab52675197c0edad4852df06e08920f
 
 COCOAPODS: 1.15.2

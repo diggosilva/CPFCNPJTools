@@ -13,4 +13,7 @@ Pod::Spec.new do |s|
     s.source = { :git => 'https://github.com/diggosilva/CPF-CNPJ-TOOLS', :tag => s.version }
     s.ios.deployment_target = '13.0'
     s.source_files = 'CPFCNPJTools/Source/*.swift'
+    s.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'CPFCNPJTools/Tests/*.swift'
+    end 
   end
