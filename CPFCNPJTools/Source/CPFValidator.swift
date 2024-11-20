@@ -81,17 +81,6 @@ public class CPFValidator {
         return checkSum
     }
     
-    func animateLabelTextChange(label: UILabel, text: String, textColor: UIColor) {
-        UIView.animate(withDuration: 0.5) {
-            label.alpha = 0
-        }
-        UIView.animate(withDuration: 0.5) {
-            label.alpha = 1
-            label.text = text
-            label.textColor = textColor
-        }
-    }
-    
     public func applyCPFMask(cpf: String) -> String {
         var originalText = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
