@@ -49,9 +49,9 @@ class CNPJValidatorTests: XCTestCase {
         XCTAssertEqual(result, .invalid)
     }
     
-    func testValidateWhenCNPJFakeIsGenerated() {
+    func testGeneratedFakeCNPJ() {
         let sut = CNPJValidator()
-        let result = sut.generateCNPJ()
+        let result = sut.generateFakeCNPJ()
         XCTAssertFalse(result.isEmpty, "O CNPJ gerado não deve ser vazio")
         
         let regex = try! NSRegularExpression(pattern: "^\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}$")
@@ -60,7 +60,7 @@ class CNPJValidatorTests: XCTestCase {
         XCTAssertNotNil(match, "O CNPJ gerado não tem o formato correto")
     }
     
-    func testValidateWhenCNPJIsMasked() {
+    func testApplyCNPJMask() {
         let sut = CNPJValidator()
         let unmaskedCNPJ = "12345678000190"
         let expectedMaskedCNPJ = "12.345.678/0001-90"

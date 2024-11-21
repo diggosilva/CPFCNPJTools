@@ -54,7 +54,7 @@ public class CNPJValidator {
         }
     }
     
-    public func generateCNPJ() -> String {
+    public func generateFakeCNPJ() -> String {
         let get8RandomNumbers = (0..<8).compactMap({ _ in Int.random(in: 0...9) }) + [0, 0, 0, 1]
         
         var cnpj12Digits = get8RandomNumbers.compactMap({ Int(String($0)) })

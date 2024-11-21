@@ -35,16 +35,16 @@ class CPFValidatorTests: XCTestCase {
         XCTAssertEqual(result, .valid)
     }
     
-    func testValidateWhenTheCPFIsInvalidWith14Characters() {
+    func testValidateWhenTheCPFIsInvalidWith11Characters() {
         let sut = CPFValidator()
         let invalidCPF = "12345678901"
         let result = sut.validate(cpf: invalidCPF)
         XCTAssertEqual(result, .invalid)
     }
     
-    func testValidateWhenTheCPFFakeIsGenerated() {
+    func testGeneratedFakeCPF() {
         let sut = CPFValidator()
-        let result = sut.generateCPF()
+        let result = sut.generateFakeCPF()
         XCTAssertFalse(result.isEmpty, "O CPF gerado não deve ser vazio")
         
         // Expressão regular para verificar o formato do CPF
@@ -56,16 +56,17 @@ class CPFValidatorTests: XCTestCase {
         XCTAssertNotNil(match, "O CPF gerado não tem o formato esperado")
     }
     
-    func testValidateWhenTheCPFIsMasked() {
+    func testApplyCPFMask() {
         let sut = CPFValidator()
         let unmaskedCPF = "12345678910"
         let expectedMaskedCPF = "123.456.789-10"
         let result = sut.applyCPFMask(cpf: unmaskedCPF)
         XCTAssertEqual(result, expectedMaskedCPF)
+        
+        XCTAssertGreaterThanOrEqual(unmaskedCPF.count, 11)
     }
     
     override class func tearDown() {
         super.tearDown()
     }
-    
 }

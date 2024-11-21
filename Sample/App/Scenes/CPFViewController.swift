@@ -55,7 +55,7 @@ extension CPFViewController: CPFViewDelegate {
     }
     
     func generateCPF() {
-        let cpf = CPFValidator().generateCPF()
+        let cpf = CPFValidator().generateFakeCPF()
         cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf)"
     }
 }

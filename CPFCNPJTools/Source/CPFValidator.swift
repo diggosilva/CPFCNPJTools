@@ -51,7 +51,7 @@ public class CPFValidator {
         }
     }
     
-    public func generateCPF() -> String {
+    public func generateFakeCPF() -> String {
         var get9RandomNumbers = (0..<9).compactMap({ _ in Int.random(in: 0...9) })
         
         let calculated1stCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: get9RandomNumbers, multiplyBy: 10)).truncatingRemainder(dividingBy: 11)
@@ -70,7 +70,7 @@ public class CPFValidator {
         return formattedCPF
     }
     
-    func calculateCPFCheckSum(cpfBaseDigits: [Int], multiplyBy: Int) -> Int {
+    public func calculateCPFCheckSum(cpfBaseDigits: [Int], multiplyBy: Int) -> Int {
         var multiplyBy = multiplyBy
         var checkSum = 0
         
