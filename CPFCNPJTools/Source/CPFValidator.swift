@@ -15,10 +15,24 @@ public enum CPFStatus {
     case invalid       // Invalid CPF.
 }
 
+/// The `CPFValidator` class is responsible for validating, generating, and formatting CPF numbers (Brazilian Individual Taxpayer Registry).
+///
+/// It provides methods to validate a CPF, generate fake CPFs, format a CPF into a readable format, and apply a mask to the CPF.
 public class CPFValidator {
     
+    /// Inicializa um novo validador de CPF.
     public init() {}
     
+    /// Validates a provided CPF, checking its format and verifying if the check digits are correct.
+    /// - Parameter cpf: The CPF to be validated.
+    /// - Returns: A `CPFStatus` value indicating the result of the validation.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let validator = CPFValidator()
+    /// let result = validator.validate(cpf: "11144477735")
+    /// print(result) // .valid or .invalid
+    /// ```
     public func validate(cpf: String) -> CPFStatus {
         // Clears the CPF, removing non-numeric characters
         let cleanedCPF = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
@@ -51,6 +65,18 @@ public class CPFValidator {
         }
     }
     
+    /// Generates a valid and random fake CPF.
+    ///
+    /// This method creates a random CPF, calculates the check digits, and returns a valid CPF.
+    ///
+    /// - Returns: A randomly generated valid fake CPF.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let validator = CPFValidator()
+    /// let fakeCPF = validator.generateFakeCPF()
+    /// print(fakeCPF) // "11144477735"
+    /// ```
     public func generateFakeCPF() -> String {
         var get9RandomNumbers = (0..<9).compactMap({ _ in Int.random(in: 0...9) })
         
@@ -65,16 +91,49 @@ public class CPFValidator {
         return validate(cpf: generatedFakeCPF) == .valid ? generatedFakeCPF : generateFakeCPF()
     }
     
+    /// Generates a fake CPF with a mask (readable format).
+    ///
+    /// This method generates a fake CPF and applies the formatting in the "xxx.xxx.xxx-xx" pattern.
+    ///
+    /// - Returns: The generated fake CPF with the applied mask, or `nil` if the CPF cannot be generated.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let validator = CPFValidator()
+    /// let fakeCPFMasked = validator.generateFakeCPFMasked()
+    /// print(fakeCPFMasked) // "111.444.777-35"
+    /// ```
     public func generateFakeCPFMasked() -> String? {
         return formattedCPF(generateFakeCPF())
     }
     
+    /// Formats a CPF in the "xxx.xxx.xxx-xx" pattern.
+    /// - Parameter cpf: The CPF to be formatted.
+    /// - Returns: The formatted CPF, or `nil` if the CPF does not have exactly 11 digits.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let formatted = validator.formattedCPF("12345678909")
+    /// print(formatted) // "123.456.789-09"
+    /// ```
     public func formattedCPF(_ cpf: String) -> String? {
         guard cpf.count == 11 else { return nil }
         let formattedCPF = "\(cpf.prefix(3)).\(cpf.dropFirst(3).prefix(3)).\(cpf.dropFirst(6).prefix(3))-\(cpf.suffix(2))"
         return formattedCPF
     }
     
+    /// Calculates the checksum of a base CPF, used to determine the check digits.
+    ///
+    /// - Parameters:
+    ///   - cpfBaseDigits: The first 9 digits of the CPF.
+    ///   - multiplyBy: The initial multiplication value (10 for the first digit, 11 for the second).
+    /// - Returns: The calculated checksum value.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let checkSum = validator.calculateCPFCheckSum(cpfBaseDigits: [1, 1, 1, 4, 4, 4, 7, 7, 7], multiplyBy: 10)
+    /// print(checkSum) // Result of the calculation
+    /// ```
     public func calculateCPFCheckSum(cpfBaseDigits: [Int], multiplyBy: Int) -> Int {
         var multiplyBy = multiplyBy
         var checkSum = 0
@@ -86,6 +145,16 @@ public class CPFValidator {
         return checkSum
     }
     
+    /// Applies a mask to the CPF, transforming it into the "xxx.xxx.xxx-xx" format.
+    ///
+    /// - Parameter cpf: The CPF to be masked.
+    /// - Returns: The CPF with the applied mask.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let maskedCPF = validator.applyCPFMask(cpf: "11144477735")
+    /// print(maskedCPF) // "111.444.777-35"
+    /// ```
     public func applyCPFMask(cpf: String) -> String {
         var originalText = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         

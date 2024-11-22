@@ -61,7 +61,7 @@ class CNPJView: UIView {
         return btn
     }()
     
-    lazy var createCNPJbutton: UIButton = {
+    lazy var generateCNPJbutton: UIButton = {
         let btn = UIButton(type: .system)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Gerar CNPJ", for: .normal)
@@ -106,7 +106,7 @@ class CNPJView: UIView {
     
     private func setHierarchy() {
         backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
-        addSubviews([backgroundView, resultLabel, textField, validateCNPJbutton, createCNPJbutton])
+        addSubviews([backgroundView, resultLabel, textField, validateCNPJbutton, generateCNPJbutton])
     }
     
     private func setConstraints() {
@@ -129,9 +129,9 @@ class CNPJView: UIView {
             validateCNPJbutton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 30),
             validateCNPJbutton.widthAnchor.constraint(equalToConstant: 200),
             
-            createCNPJbutton.centerXAnchor.constraint(equalTo: validateCNPJbutton.centerXAnchor),
-            createCNPJbutton.topAnchor.constraint(equalTo: validateCNPJbutton.bottomAnchor, constant: 30),
-            createCNPJbutton.widthAnchor.constraint(equalToConstant: 200),
+            generateCNPJbutton.centerXAnchor.constraint(equalTo: validateCNPJbutton.centerXAnchor),
+            generateCNPJbutton.topAnchor.constraint(equalTo: validateCNPJbutton.bottomAnchor, constant: 30),
+            generateCNPJbutton.widthAnchor.constraint(equalToConstant: 200),
         ])
     }
 }

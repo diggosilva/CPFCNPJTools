@@ -61,7 +61,7 @@ class CPFView: UIView {
         return btn
     }()
     
-    lazy var createCPFbutton: UIButton = {
+    lazy var generateCPFbutton: UIButton = {
         let btn = UIButton(type: .system)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Gerar CPF", for: .normal)
@@ -106,7 +106,7 @@ class CPFView: UIView {
     
     private func setHierarchy() {
         backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
-        addSubviews([backgroundView, resultLabel, textField, validateCPFbutton, createCPFbutton])
+        addSubviews([backgroundView, resultLabel, textField, validateCPFbutton, generateCPFbutton])
     }
     
     private func setConstraints() {
@@ -129,9 +129,9 @@ class CPFView: UIView {
             validateCPFbutton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 30),
             validateCPFbutton.widthAnchor.constraint(equalToConstant: 200),
             
-            createCPFbutton.centerXAnchor.constraint(equalTo: validateCPFbutton.centerXAnchor),
-            createCPFbutton.topAnchor.constraint(equalTo: validateCPFbutton.bottomAnchor, constant: 30),
-            createCPFbutton.widthAnchor.constraint(equalToConstant: 200),
+            generateCPFbutton.centerXAnchor.constraint(equalTo: validateCPFbutton.centerXAnchor),
+            generateCPFbutton.topAnchor.constraint(equalTo: validateCPFbutton.bottomAnchor, constant: 30),
+            generateCPFbutton.widthAnchor.constraint(equalToConstant: 200),
         ])
     }
 }
