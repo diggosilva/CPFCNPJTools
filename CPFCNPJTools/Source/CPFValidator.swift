@@ -61,11 +61,16 @@ public class CPFValidator {
         calculated2ndCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated2ndCheckDigit))
         
         let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
-        return formattedCPF(generatedFakeCPF)
+        
+        return validate(cpf: generatedFakeCPF) == .valid ? generatedFakeCPF : generateFakeCPF()
     }
     
-    func formattedCPF(_ cpf: String) -> String {
-        guard cpf.count == 11 else { return cpf }
+    public func generateFakeCPFMasked() -> String? {
+        return formattedCPF(generateFakeCPF())
+    }
+    
+    public func formattedCPF(_ cpf: String) -> String? {
+        guard cpf.count == 11 else { return nil }
         let formattedCPF = "\(cpf.prefix(3)).\(cpf.dropFirst(3).prefix(3)).\(cpf.dropFirst(6).prefix(3))-\(cpf.suffix(2))"
         return formattedCPF
     }
