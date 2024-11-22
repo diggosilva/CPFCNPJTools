@@ -68,7 +68,11 @@ public class CNPJValidator {
         calculated2ndCheckDigit < 2 ? cnpj12Digits.append(0) : cnpj12Digits.append(11 - Int(calculated2ndCheckDigit))
         
         let generatedFakeCNPJ = cnpj12Digits.compactMap({ String($0) }).joined()
-        return formattedCNPJ(generatedFakeCNPJ)
+        return validate(cnpj: generatedFakeCNPJ) == .valid ? generatedFakeCNPJ : generateFakeCNPJ()
+    }
+    
+    public func generateFakeCNPJMasked() -> String? {
+        return formattedCNPJ(generateFakeCNPJ())
     }
     
     func formattedCNPJ(_ cnpj: String) -> String {

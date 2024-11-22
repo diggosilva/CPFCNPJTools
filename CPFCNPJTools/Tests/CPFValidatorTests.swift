@@ -14,14 +14,14 @@ class CPFValidatorTests: XCTestCase {
         XCTAssertEqual(result, .cpfNull)
     }
     
-    func testValidateWhenCPFHasLessThan11Characters() {
+    func testValidateWhenTheCPFsInvalidFormatWithLessThan11Characters() {
         let sut = CPFValidator()
         let invalidCPF = "123456789"
         let result = sut.validate(cpf: invalidCPF)
         XCTAssertEqual(result, .invalidFormat)
     }
     
-    func testValidateWhenTheCPFIsGreaterThan11Characters() {
+    func testValidateWhenTheCPFsInvalidFormatWithMoreThan11Characters() {
         let sut = CPFValidator()
         let invalidCPF = "123456789101"
         let result = sut.validate(cpf: invalidCPF)

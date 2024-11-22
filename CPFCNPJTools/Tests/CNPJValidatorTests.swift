@@ -1,10 +1,3 @@
-//
-//  CNPJValidatorTests.swift
-//  CPFCNPJTools-Unit-Tests
-//
-//  Created by Diggo Silva on 20/11/24.
-//
-
 import XCTest
 import CPFCNPJTools
 
@@ -21,14 +14,21 @@ class CNPJValidatorTests: XCTestCase {
         XCTAssertEqual(result, .cnpjNull)
     }
     
-    func testValidateWhenTheCNPJIsInvalidFormatWith12Characters() {
+    func testValidateWhenTheCNPJIsInvalidFormatWithLessThan14Characters() {
         let sut = CNPJValidator()
-        let invalidCNPJ = "123456780001"
+        let invalidCNPJ = "1234567800010"
         let result = sut.validate(cnpj: invalidCNPJ)
         XCTAssertEqual(result, .invalidFormat)
     }
     
-    func testValidateWhenTheCNPJIsEqualDigitsWith11Characters() {
+    func testValidateWhenTheCNPJIsInvalidFormatWithMoreThan14Characters() {
+        let sut = CNPJValidator()
+        let invalidCNPJ = "123456780001012"
+        let result = sut.validate(cnpj: invalidCNPJ)
+        XCTAssertEqual(result, .invalidFormat)
+    }
+    
+    func testValidateWhenTheCNPJIsEqualDigitsWith14Characters() {
         let sut = CNPJValidator()
         let invalidCNPJ = "11111111111111"
         let result = sut.validate(cnpj: invalidCNPJ)
@@ -49,21 +49,35 @@ class CNPJValidatorTests: XCTestCase {
         XCTAssertEqual(result, .invalid)
     }
     
+    func testGeneratedFakeCNPJMasked() {
+        let sut = CNPJValidator()
+        let result = sut.generateFakeCNPJMasked()
+        XCTAssertNotNil(result)
+        
+        let regex = try! NSRegularExpression(pattern: "^\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}$")
+        let range = NSRange(location: 0, length: result!.utf16.count)
+        let match = regex.firstMatch(in: result!, options: [], range: range)
+        XCTAssertNotNil(match, "O CNPJ gerado não tem o formato correto")
+    }
+    
     func testGeneratedFakeCNPJ() {
         let sut = CNPJValidator()
         let result = sut.generateFakeCNPJ()
-        XCTAssertFalse(result.isEmpty, "O CNPJ gerado não deve ser vazio")
-        
-        let regex = try! NSRegularExpression(pattern: "^\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}$")
-        let range = NSRange(location: 0, length: result.utf16.count)
-        let match = regex.firstMatch(in: result, options: [], range: range)
-        XCTAssertNotNil(match, "O CNPJ gerado não tem o formato correto")
+        XCTAssertTrue(result.count == 14)
     }
     
     func testApplyCNPJMask() {
         let sut = CNPJValidator()
         let unmaskedCNPJ = "12345678000190"
         let expectedMaskedCNPJ = "12.345.678/0001-90"
+        let result = sut.applyCNPJMask(cnpj: unmaskedCNPJ)
+        XCTAssertEqual(result, expectedMaskedCNPJ)
+    }
+    
+    func testApplyCNPJMaskMoreThan14Digits() {
+        let sut = CNPJValidator()
+        let unmaskedCNPJ = "123456780001001"
+        let expectedMaskedCNPJ = "12.345.678/0001-00"
         let result = sut.applyCNPJMask(cnpj: unmaskedCNPJ)
         XCTAssertEqual(result, expectedMaskedCNPJ)
     }
