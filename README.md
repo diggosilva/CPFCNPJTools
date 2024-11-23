@@ -56,7 +56,7 @@ $ pod install
 
 ## 1.1 Validate CPF
 
-- To validate a CPF, simply use the ```validate(cpf:)``` method:
+- To validate a CPF, simply use the `validate(cpf:)` method:
 
 ```swift
 let validator = CPFValidator()
@@ -66,7 +66,7 @@ print(result) // .valid or .invalid
 
 ## 1.2 Generate Fake CPF
 
- - To generate a fake CPF, simply use the ```generateFakeCPF()``` method:
+ - To generate a fake CPF, simply use the `generateFakeCPF()` method:
 
  ```swift
  let validator = CPFValidator()
@@ -76,7 +76,7 @@ print(result) // .valid or .invalid
 
 ## 1.3 Generate Fake CPF masked
 
-- To generate a fake CPF with mask, simply use the ```generateFakeCPFMasked()``` method:
+- To generate a fake CPF with mask, simply use the `generateFakeCPFMasked()` method:
 
 ```swift
 let validator = CPFValidator()
@@ -85,7 +85,7 @@ print(fakeCPFMasked) // "111.444.777-35"
 ```
 ## 2.1 Validate CNPJ
 
-- To validate a CNPJ, simply use the ```validate(cnpj:)``` method:
+- To validate a CNPJ, simply use the `validate(cnpj:)` method:
 
 ```swift
 let validator = CNPJValidator()
