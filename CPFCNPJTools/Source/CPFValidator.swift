@@ -113,8 +113,8 @@ public class CPFValidator {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let formatted = validator.formattedCPF("12345678909")
-    /// print(formatted) // "123.456.789-09"
+    /// let formatted = validator.formattedCPF("11144477735")
+    /// print(formatted) // "111.444.777-35"
     /// ```
     public func formattedCPF(_ cpf: String) -> String? {
         guard cpf.count == 11 else { return nil }
