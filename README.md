@@ -52,7 +52,7 @@ Then run:
 $ pod install
 ```
 
-## How to use
+## HowToUse
 
 ## 1.1 Validate CPF
 
