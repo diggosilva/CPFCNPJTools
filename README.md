@@ -54,7 +54,7 @@ $ pod install
 
 ## HowToUse
 
-## 1.1 Validate CPF
+### 1.1 Validate CPF
 
 - To validate a CPF, simply use the `validate(cpf:)` method:
 
@@ -64,7 +64,7 @@ let result = validator.validate(cpf: "11144477735")
 print(result) // .valid or .invalid
  ```
 
-## 1.2 Generate Fake CPF
+### 1.2 Generate Fake CPF
 
  - To generate a fake CPF, simply use the `generateFakeCPF()` method:
 
@@ -74,7 +74,7 @@ print(result) // .valid or .invalid
  print(fakeCPF) // "11144477735"
 ```
 
-## 1.3 Generate Fake CPF masked
+### 1.3 Generate Fake CPF masked
 
 - To generate a fake CPF with mask, simply use the `generateFakeCPFMasked()` method:
 
@@ -83,7 +83,7 @@ let validator = CPFValidator()
 let fakeCPFMasked = validator.generateFakeCPFMasked()
 print(fakeCPFMasked) // "111.444.777-35"
 ```
-## 2.1 Validate CNPJ
+### 2.1 Validate CNPJ
 
 - To validate a CNPJ, simply use the `validate(cnpj:)` method:
 
@@ -93,7 +93,7 @@ let result = validator.validate(cnpj: "11444777000135")
 print(result) // .valid or .invalid
 ```
 
-## 2.2 Generate Fake CNPJ
+### 2.2 Generate Fake CNPJ
 
 ```swift
 let validator = CNPJValidator()
@@ -101,7 +101,7 @@ let fakeCNPJ = validator.generateFakeCNPJ()
 print(fakeCNPJ) // "11444777000135"
 ```
 
-## 2.3 Generate Fake CNPJ masked
+### 2.3 Generate Fake CNPJ masked
 
 ```swift
 let validator = CNPJValidator()
@@ -109,7 +109,7 @@ let fakeCNPJMasked = validator.generateFakeCNPJMasked()
 print(fakeCNPJMasked) // "11.444.777/0001-35"
 ```
 
-### Notes:
+## Notes:
 
 - The file is formatted in **Markdown** (`.md`), which is the standard for GitHub readme files.
 - The methods are clearly described, with code examples in Swift to show how to use the library.
