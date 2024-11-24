@@ -119,7 +119,6 @@ Feel free to tweak any parts of the documentation to fit your style or add any a
 
 If you'd like any more changes or additions, let me know.
 
-
 ## Credits
 
 - Diggo Silva
