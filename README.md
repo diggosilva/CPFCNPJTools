@@ -9,7 +9,7 @@
     </a>
 </p>
 
-A iOS application written in Swift, This project is a library for CocoaPods that allows you to validate, generate and manipulate CPF and CNPJ numbers in a simple and efficient way. Ideal for testing and filling out forms.
+A iOS application written in Swift, this project is a library for CocoaPods that allows you to validate, generate and manipulate CPF and CNPJ numbers in a simple and efficient way. Ideal for testing and filling out forms.
 
 ## Difference between CPF and CNPJ
 
