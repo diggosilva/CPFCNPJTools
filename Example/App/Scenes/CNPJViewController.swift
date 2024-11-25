@@ -40,6 +40,8 @@ extension CNPJViewController: CNPJViewDelegate {
     func validateCNPJ() {
         let cnpj = cnpjView.cnpjResult.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
+        cnpjView.resultLabel.textColor = .label
+        
         let cnpjResult = CNPJValidator().validate(cnpj: cnpj)
         switch cnpjResult {
         case .valid:return cnpjView.resultLabel.text = "CNPJ válido."
@@ -51,7 +53,9 @@ extension CNPJViewController: CNPJViewDelegate {
     }
     
     func generateCNPJ() {
-        let cnpj = CNPJValidator().generateFakeCNPJ()
-        cnpjView.resultLabel.text = "Gerado CNPJ Fictício: \(cnpj)"
+        cnpjView.textField.text = ""
+        cnpjView.resultLabel.textColor = .systemBrown
+        let cnpj = CNPJValidator().generateFakeCNPJMasked()
+        cnpjView.resultLabel.text = "Gerado CNPJ Fictício: \(cnpj ?? "")"
     }
 }
