@@ -67,7 +67,7 @@ class CNPJView: UIView {
         btn.setTitle("Gerar CNPJ", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
-        btn.backgroundColor = .systemIndigo
+        btn.backgroundColor = .systemBrown
         btn.addTarget(self, action: #selector(generateCNPJ), for: .touchUpInside)
         return btn
     }()
