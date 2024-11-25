@@ -40,13 +40,11 @@ extension CPFViewController: CPFViewDelegate {
     func validateCPF() {
         let cpf = cpfView.cpfResult.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
+        cpfView.resultLabel.textColor = .label
+        
         let cpfResult = CPFValidator().validate(cpf: cpf)
         switch cpfResult {
-        case .valid: 
-            return cpfView.resultLabel.text = "CPF válido."
-            
-            
-            
+        case .valid: return cpfView.resultLabel.text = "CPF válido."
         case .cpfNull: return cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
         case .invalidFormat: return cpfView.resultLabel.text = "CPF inválido.\nDeve ter 11 dígitos (apenas números)."
         case .equalDigits: return cpfView.resultLabel.text = "CPF inválido.\nTodos os dígitos são iguais."
@@ -55,7 +53,9 @@ extension CPFViewController: CPFViewDelegate {
     }
     
     func generateCPF() {
-        let cpf = CPFValidator().generateFakeCPF()
-        cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf)"
+        cpfView.textField.text = ""
+        cpfView.resultLabel.textColor = .systemIndigo
+        let cpf = CPFValidator().generateFakeCPFMasked()
+        cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf ?? "")"
     }
 }
