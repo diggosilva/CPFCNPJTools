@@ -10,7 +10,6 @@
 		09C9891C2380480D6543BD4E /* CNPJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8853E1374B93AF899C4C740C /* CNPJViewController.swift */; };
 		46ED7AA21804C8AB7CC8A0B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40560421C1FD370340A0832E /* SceneDelegate.swift */; };
 		4E0EF8ABBEA8A8C65A8A2606 /* CPFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3C6D25A06375D32DF021C9 /* CPFView.swift */; };
-		9211B0F62CF24D980013D8EA /* SystemPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 9211B0F52CF24D980013D8EA /* SystemPackage */; };
 		9DF8436074A2B56F3B3B3F99 /* Pods_ExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 806FF9DF26654B2942D1BA3F /* Pods_ExampleApp.framework */; };
 		A37E179AA6A2C4FBFD924B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C9BA92B4C370D66B9AB0595 /* Assets.xcassets */; };
 		A98CB7C86FE6AEC3E11ADCA9 /* CNPJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6156BBB8181F60B3B9C84AD /* CNPJView.swift */; };
@@ -42,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9211B0F62CF24D980013D8EA /* SystemPackage in Frameworks */,
 				9DF8436074A2B56F3B3B3F99 /* Pods_ExampleApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,25 +443,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9211B0F42CF24D980013D8EA /* XCRemoteSwiftPackageReference "swift-system" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-system.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9211B0F52CF24D980013D8EA /* SystemPackage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9211B0F42CF24D980013D8EA /* XCRemoteSwiftPackageReference "swift-system" */;
-			productName = SystemPackage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA8E1E974698BC95958F017F /* Project object */;
 }
