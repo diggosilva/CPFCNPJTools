@@ -38,7 +38,7 @@ A iOS application written in Swift, this project is a library for CocoaPods that
 - [x] Fictitious CPF generation: Generate a valid CPF number randomly.
 - [x] Fictitious CNPJ generation: Generate a valid CNPJ number randomly.
 
-## Instalation
+## Instalation with Cocoapods
 
 Add the dependency to your Podfile:
 
@@ -51,6 +51,12 @@ Then run:
 ```sh
 $ pod install
 ```
+
+## Instalation with Swift Package Manager (Xcode 11+)
+
+[Swift Package Manager (SwiftPM)](https://www.swift.org/documentation/package-manager) is a tool for managing the distribution of Swift code as well as C-family dependency. From Xcode 11, SwiftPM got natively integrated with Xcode.
+
+CPF-CNPJ-TOOLS support SwiftPM from version 5.1.0. To use SwiftPM, you should use Xcode to open your project. Click `File` -> `Add Package Dependencies`, enter [CPF-CNPJ-TOOLS repo's URL](https://github.com/diggosilva/CPF-CNPJ-TOOLS). 
 
 ## HowToUse
 
