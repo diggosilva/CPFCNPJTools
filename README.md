@@ -1,4 +1,4 @@
-# CPF-CNPJ-TOOLS
+# CPFCNPJTools
 
 <p align="center">
     <img src="https://img.shields.io/badge/Swift-5.9.1-orange.svg" />
@@ -56,7 +56,7 @@ $ pod install
 
 [Swift Package Manager (SwiftPM)](https://www.swift.org/documentation/package-manager) is a tool for managing the distribution of Swift code as well as C-family dependency. From Xcode 11, SwiftPM got natively integrated with Xcode.
 
-CPF-CNPJ-TOOLS support SwiftPM from version 5.1.0. To use SwiftPM, you should use Xcode to open your project. Click `File` -> `Add Package Dependencies`, enter [CPF-CNPJ-TOOLS repo's URL](https://github.com/diggosilva/CPF-CNPJ-TOOLS). 
+CPFCNPJTools support SwiftPM from version 5.1.0. To use SwiftPM, you should use Xcode to open your project. Click `File` -> `Add Package Dependencies`, enter [CPFCNPJTools repo's URL](https://github.com/diggosilva/CPFCNPJTools). 
 
 ## HowToUse
 
