@@ -6,14 +6,14 @@
     "file": "LICENSE"
   },
   "summary": "CPF and CNPJ Tools",
-  "description": "It a Swift library that validates CPF and CNPJ.",
-  "homepage": "https://github.com/diggosilva/CPF-CNPJ-TOOLS",
+  "description_en": "CPF and CNPJ Validator for iOS helps validate CPF and CNPJ numbers in your app according to Brazilian Federal Revenue rules.\nIt supports both punctuated and unpunctuated formats.\nEasily integrate accurate CPF and CNPJ validation without coding from scratch.\n\nValidador de CPF e CNPJ para iOS valida números conforme as regras da Receita Federal.\nSuporta formatos com ou sem pontuação.\nIntegre facilmente a validação de CPF e CNPJ sem escrever lógica de validação.",
+  "homepage": "https://github.com/diggosilva/CPFCNPJTools",
   "authors": {
     "Diggo Silva": "rdiggosilva@gmail.com",
     "Helio Mesquita": "helio.mesquitaios@gmail.com"
   },
   "source": {
-    "git": "https://github.com/diggosilva/CPF-CNPJ-TOOLS",
+    "git": "https://github.com/diggosilva/CPFCNPJTools",
     "tag": "1.0.0"
   },
   "platforms": {
