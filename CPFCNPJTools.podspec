@@ -6,12 +6,12 @@ Pod::Spec.new do |s|
   
     s.description      = <<-DESC
     CPF and CNPJ Validator for iOS helps validate CPF and CNPJ numbers in your app according to Brazilian Federal Revenue rules.
-    \nIt supports both punctuated and unpunctuated formats.
-    \nEasily integrate accurate CPF and CNPJ validation without coding from scratch.
+    It supports both punctuated and unpunctuated formats.
+    Easily integrate accurate CPF and CNPJ validation without coding from scratch.
     
-    \n\nValidador de CPF e CNPJ para iOS valida números conforme as regras da Receita Federal.
-    \nSuporta formatos com ou sem pontuação.
-    \nIntegre facilmente a validação de CPF e CNPJ sem escrever lógica de validação.
+    Validador de CPF e CNPJ para iOS valida números conforme as regras da Receita Federal.
+    Suporta formatos com ou sem pontuação.
+    Integre facilmente a validação de CPF e CNPJ sem escrever lógica de validação.
                          DESC
   
     s.homepage         = 'https://github.com/diggosilva/CPFCNPJTools'
