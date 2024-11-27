@@ -1,6 +1,0 @@
-framework module CPFCNPJTools {
-  umbrella header "CPFCNPJTools-umbrella.h"
-
-  export *
-  module * { export * }
-}
