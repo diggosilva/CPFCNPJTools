@@ -153,10 +153,10 @@ public class CNPJValidator {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let maskedCNPJ = validator.applyCNPJMask(cnpj: "11444777000135")
+    /// let maskedCNPJ = validator.applyMask(cnpj: "11444777000135")
     /// print(maskedCNPJ) // "11.444.777/0001-35"
     /// ```
-    public func applyCNPJMask(cnpj: String) -> String {
+    public func applyMask(cnpj: String) -> String {
         var originalText = cnpj.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
         if originalText.count > 14 {
