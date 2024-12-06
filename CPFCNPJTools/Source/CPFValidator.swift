@@ -152,10 +152,10 @@ public class CPFValidator {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let maskedCPF = validator.applyCPFMask(cpf: "11144477735")
+    /// let maskedCPF = validator.applyMask(cpf: "11144477735")
     /// print(maskedCPF) // "111.444.777-35"
     /// ```
-    public func applyCPFMask(cpf: String) -> String {
+    public func applyMask(cpf: String) -> String {
         var originalText = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
         if originalText.count > 11 {
