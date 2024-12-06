@@ -70,7 +70,7 @@ class CNPJValidatorTests: XCTestCase {
         let sut = CNPJValidator()
         let unmaskedCNPJ = "12345678000190"
         let expectedMaskedCNPJ = "12.345.678/0001-90"
-        let result = sut.applyCNPJMask(cnpj: unmaskedCNPJ)
+        let result = sut.applyMask(cnpj: unmaskedCNPJ)
         XCTAssertEqual(result, expectedMaskedCNPJ)
     }
     
@@ -78,7 +78,7 @@ class CNPJValidatorTests: XCTestCase {
         let sut = CNPJValidator()
         let unmaskedCNPJ = "123456780001001"
         let expectedMaskedCNPJ = "12.345.678/0001-00"
-        let result = sut.applyCNPJMask(cnpj: unmaskedCNPJ)
+        let result = sut.applyMask(cnpj: unmaskedCNPJ)
         XCTAssertEqual(result, expectedMaskedCNPJ)
     }
     
