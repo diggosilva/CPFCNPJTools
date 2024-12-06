@@ -123,7 +123,7 @@ class CPFValidatorTests: XCTestCase {
         let sut = CPFValidator()
         let unmaskedCPF = "12345678910"
         let expectedMaskedCPF = "123.456.789-10"
-        let result = sut.applyCPFMask(cpf: unmaskedCPF)
+        let result = sut.applyMask(cpf: unmaskedCPF)
         XCTAssertEqual(result, expectedMaskedCPF)
     }
     
@@ -131,7 +131,7 @@ class CPFValidatorTests: XCTestCase {
         let sut = CPFValidator()
         let unmaskedCPF = "123456789101"
         let expectedMaskedCPF = "123.456.789-10"
-        let result = sut.applyCPFMask(cpf: unmaskedCPF)
+        let result = sut.applyMask(cpf: unmaskedCPF)
         XCTAssertEqual(result, expectedMaskedCPF)
     }
     
