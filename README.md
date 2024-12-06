@@ -52,11 +52,11 @@ Then run:
 $ pod install
 ```
 
-## Instalation with Swift Package Manager (Xcode 11+)
+## Instalation with (SPM) - Swift Package Manager (Xcode 11+)
 
-[Swift Package Manager (SwiftPM)](https://www.swift.org/documentation/package-manager) is a tool for managing the distribution of Swift code as well as C-family dependency. From Xcode 11, SwiftPM got natively integrated with Xcode.
+[Swift Package Manager (SPM)](https://www.swift.org/documentation/package-manager) is a tool for managing the distribution of Swift code as well as C-family dependency. From Xcode 11, SwiftPM got natively integrated with Xcode.
 
-CPFCNPJTools support SwiftPM from version 5.1.0. To use SwiftPM, you should use Xcode to open your project. Click `File` -> `Add Package Dependencies`, enter [CPFCNPJTools repo's URL](https://github.com/diggosilva/CPFCNPJTools). 
+CPFCNPJTools support SPM from version 5.1.0. To use SPM, you should use Xcode to open your project. Click `File` -> `Add Package Dependencies`, enter [CPFCNPJTools repo's URL](https://github.com/diggosilva/CPFCNPJTools). 
 
 ## HowToUse
 
