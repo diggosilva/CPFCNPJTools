@@ -86,7 +86,7 @@ class CPFView: UIView {
     
     @objc private func cpfTextFieldMask() {
         let cpf = textField.text ?? ""
-        let maskCPF = CPFValidator.init().applyCPFMask(cpf: cpf)
+        let maskCPF = CPFValidator.init().applyMask(cpf: cpf)
         textField.text = maskCPF
         cpfResult = maskCPF
     }
