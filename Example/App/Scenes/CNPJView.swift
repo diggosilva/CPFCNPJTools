@@ -42,7 +42,7 @@ class CNPJView: UIView {
     lazy var textField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.placeholder = "Digite o CPF"
+        tf.placeholder = "Digite o CNPJ"
         tf.borderStyle = .roundedRect
         tf.clearButtonMode = .whileEditing
         tf.keyboardType = .numberPad
