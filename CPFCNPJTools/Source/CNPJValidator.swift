@@ -30,7 +30,7 @@ public class CNPJValidator {
     /// **Usage example:**
     /// ```swift
     /// let validator = CNPJValidator()
-    /// let result = validator.validate(cnpj: "11444777000135")
+    /// let result = validator.validate(cnpj: "11444777000161")
     /// print(result) // .valid or .invalid
     /// ```
     public func validate(cnpj: String) -> CNPJStatus {
@@ -78,7 +78,7 @@ public class CNPJValidator {
     /// ```swift
     /// let validator = CNPJValidator()
     /// let fakeCNPJ = validator.generateFakeCNPJ()
-    /// print(fakeCNPJ) // "11444777000135"
+    /// print(fakeCNPJ) // "11444777000161"
     /// ```
     public func generateFakeCNPJ() -> String {
         let get8RandomNumbers = (0..<8).compactMap({ _ in Int.random(in: 0...9) }) + [0, 0, 0, 1]
@@ -107,7 +107,7 @@ public class CNPJValidator {
     /// ```swift
     /// let validator = CNPJValidator()
     /// let fakeCNPJMasked = validator.generateFakeCNPJMasked()
-    /// print(fakeCNPJMasked) // "11.444.777/0001-35"
+    /// print(fakeCNPJMasked) // "11.444.777/0001-61"
     /// ```
     public func generateFakeCNPJMasked() -> String? {
         return formattedCNPJ(generateFakeCNPJ())
@@ -120,8 +120,8 @@ public class CNPJValidator {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let formatted = validator.formattedCNPJ("11444777000135")
-    /// print(formatted) // "11.444.777/0001-35"
+    /// let formatted = validator.formattedCNPJ("11444777000161")
+    /// print(formatted) // "11.444.777/0001-61"
     /// ```
     func formattedCNPJ(_ cnpj: String) -> String {
         guard cnpj.count == 14 else { return cnpj }
@@ -153,8 +153,8 @@ public class CNPJValidator {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let maskedCNPJ = validator.applyMask(cnpj: "11444777000135")
-    /// print(maskedCNPJ) // "11.444.777/0001-35"
+    /// let maskedCNPJ = validator.applyMask(cnpj: "11444777000161")
+    /// print(maskedCNPJ) // "11.444.777/0001-61"
     /// ```
     public func applyMask(cnpj: String) -> String {
         var originalText = cnpj.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
