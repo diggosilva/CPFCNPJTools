@@ -54,6 +54,7 @@ extension CPFViewController: CPFViewDelegate {
     
     func generateCPF() {
         cpfView.textField.text = ""
+        cpfView.cpfResult = ""
         cpfView.resultLabel.textColor = .systemIndigo
         let cpf = CPFValidator().generateFakeCPFMasked()
         cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf ?? "")"
