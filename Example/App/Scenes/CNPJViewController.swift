@@ -54,6 +54,7 @@ extension CNPJViewController: CNPJViewDelegate {
     
     func generateCNPJ() {
         cnpjView.textField.text = ""
+        cnpjView.cnpjResult = ""
         cnpjView.resultLabel.textColor = .systemBrown
         let cnpj = CNPJValidator().generateFakeCNPJMasked()
         cnpjView.resultLabel.text = "Gerado CNPJ Fictício: \(cnpj ?? "")"
