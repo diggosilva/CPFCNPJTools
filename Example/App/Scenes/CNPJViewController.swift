@@ -44,7 +44,7 @@ extension CNPJViewController: CNPJViewDelegate {
         
         let cnpjResult = CNPJValidator().validate(cnpj: cnpj)
         switch cnpjResult {
-        case .valid:return cnpjView.resultLabel.text = "CNPJ válido."
+        case .valid: return cnpjView.resultLabel.text = "CNPJ válido."
         case .cnpjNull: return cnpjView.resultLabel.text = "CNPJ não pode ser nulo ou vazio."
         case .invalidFormat: return cnpjView.resultLabel.text = "CNPJ inválido.\nDeve ter 14 dígitos (apenas números)."
         case .equalDigits: return cnpjView.resultLabel.text = "CNPJ inválido.\nTodos os dígitos são iguais."

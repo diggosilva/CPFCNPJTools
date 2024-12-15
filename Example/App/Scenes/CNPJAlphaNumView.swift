@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol CNPJANViewDelegate: AnyObject {
-    func validateCNPJAN()
-    func generateCNPJAN()
+protocol CNPJAlphaNumViewDelegate: AnyObject {
+    func validateCNPJAlphaNum()
+    func generateCNPJAlphaNum()
 }
 
-class CNPJANView: UIView {
+class CNPJAlphaNumView: UIView {
     lazy var backgroundView: UIView = {
         let bgView = UIView()
         bgView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ class CNPJANView: UIView {
         tf.keyboardType = .default
         tf.autocapitalizationType = .allCharacters
         tf.autocorrectionType = .no
-        tf.addTarget(self, action: #selector(cnpjANTextFieldMask), for: .editingChanged)
+        tf.addTarget(self, action: #selector(cnpjAlphaNumTextFieldMask), for: .editingChanged)
         return tf
     }()
     
@@ -58,7 +58,7 @@ class CNPJANView: UIView {
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         btn.backgroundColor = .systemBlue
-        btn.addTarget(self, action: #selector(validateCNPJAN), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(validateCNPJAlphaNum), for: .touchUpInside)
         return btn
     }()
     
@@ -69,12 +69,12 @@ class CNPJANView: UIView {
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         btn.backgroundColor = .systemTeal
-        btn.addTarget(self, action: #selector(generateCNPJAN), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(generateCNPJAlphaNum), for: .touchUpInside)
         return btn
     }()
     
-    var CNPJAlphaNumericResult = ""
-    weak var delegate: CNPJANViewDelegate?
+    var CNPJAlphaNumResult = ""
+    weak var delegate: CNPJAlphaNumViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,7 +85,7 @@ class CNPJANView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func cnpjANTextFieldMask() {
+    @objc private func cnpjAlphaNumTextFieldMask() {
         var originalText = textField.text?.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
         
         if originalText?.count ?? 0 > 14 {
@@ -107,15 +107,15 @@ class CNPJANView: UIView {
             }
         }
         textField.text = maskedText
-        CNPJAlphaNumericResult = maskedText
+        CNPJAlphaNumResult = maskedText
     }
     
-    @objc private func validateCNPJAN() {
-        delegate?.validateCNPJAN()
+    @objc private func validateCNPJAlphaNum() {
+        delegate?.validateCNPJAlphaNum()
     }
     
-    @objc private func generateCNPJAN() {
-        delegate?.generateCNPJAN()
+    @objc private func generateCNPJAlphaNum() {
+        delegate?.generateCNPJAlphaNum()
     }
     
     private func setupView() {
