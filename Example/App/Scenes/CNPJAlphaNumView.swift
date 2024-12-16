@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CPFCNPJTools
 
 protocol CNPJAlphaNumViewDelegate: AnyObject {
     func validateCNPJAlphaNum()
@@ -86,28 +87,10 @@ class CNPJAlphaNumView: UIView {
     }
     
     @objc private func cnpjAlphaNumTextFieldMask() {
-        var originalText = textField.text?.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
-        
-        if originalText?.count ?? 0 > 14 {
-            originalText = String(originalText?.prefix(14) ?? "")
-        }
-        
-        var maskedText = ""
-        
-        if let unmaskedText = originalText {
-            for (index, char) in unmaskedText.enumerated() {
-                if index == 2 || index == 5 {
-                    maskedText.append(".")
-                } else if index == 8 {
-                    maskedText.append("/")
-                } else if index == 12 {
-                    maskedText.append("-")
-                }
-                maskedText.append(char)
-            }
-        }
-        textField.text = maskedText
-        CNPJAlphaNumResult = maskedText
+        let cnpjAlphaNum = textField.text ?? ""
+        let maskCNPJAlphaNum = String().applyMask(cnpjAlphaNum: cnpjAlphaNum)
+        textField.text = maskCNPJAlphaNum
+        CNPJAlphaNumResult = maskCNPJAlphaNum
     }
     
     @objc private func validateCNPJAlphaNum() {
