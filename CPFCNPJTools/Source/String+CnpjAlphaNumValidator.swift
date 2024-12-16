@@ -37,38 +37,43 @@ extension String {
     /// * Important: *
     /// This method removes any non-alphanumeric characters before validating the CNPJ. It validates CNPJs that may include letters (A-Z) in addition to digits (0-9).
     func isValidCnpjAlphaNum() -> Bool {
-        // Limpa o CNPJ, removendo caracteres não numéricos
+        // Clears the CPF, removing non-alphanumeric characters
         let cleanedCNPJ = self.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
         
-        // Verifica se o CNPJ tem 14 dígitos
+        guard cleanedCNPJ.count > 0 else {
+            print("DEBUG: CNPJ não pode ser nulo ou vazio")
+            return false
+        }
+        
+        // Checks if the CPF has 14 digits
         guard cleanedCNPJ.count == 14 else {
             print("DEBUG: CNPJ Alfanumérico inválido.\nDEBUG: Deve ter 14 dígitos.")
             return false
         }
         
-        // Verifica se todos os dígitos são iguais
+        // Checks if all digits are the same
         if Set(cleanedCNPJ).count == 1 {
             print("DEBUG: CNPJ Alfanumérico inválido.\nDEBUG: Todos os dígitos são iguais.")
             return false
         }
         
-        // Divide o CNPJ em 12 primeiros dígitos e os 2 últimos (dígitos verificadores)
-        let cnpjBaseDigits = self.prefix(12).compactMap({ Int($0.asciiValue!) - 48 })
-        let providedCheckDigits = self.suffix(2).compactMap({ Int(String($0)) })
+        // Divides the CNPJ into the first 12 digits and the last 2 (verification digits)
+        let cnpjBaseDigits = cleanedCNPJ.prefix(12).compactMap({ Int($0.asciiValue!) - 48 })
+        let providedCheckDigits = cleanedCNPJ.suffix(2).compactMap({ Int(String($0)) })
                 
-        // Pesos para os 2 últimos dígitos
+        // Weights for the last 2 digits
         let multiplyFirstBy = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         let multiplySecondBy = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         
-        //MARK: Calcula 1º Dígito
+        // Calculates the first verification digit
         let calculated1stCheckDigit = Double(calculateCNPJAlphaNumCheckSum(cnpj12Digits: cnpjBaseDigits, multiplyBy: multiplyFirstBy)).truncatingRemainder(dividingBy: 11)
         let firstCheckDigit = calculated1stCheckDigit < 2 ? 0 : 11 - Int(calculated1stCheckDigit)
         
-        //MARK: Calcula 2º Dígito
+        // Calculates the second verification digit
         let calculated2ndCheckDigit = Double(calculateCNPJAlphaNumCheckSum(cnpj12Digits: cnpjBaseDigits + [firstCheckDigit], multiplyBy: multiplySecondBy)).truncatingRemainder(dividingBy: 11)
         let secondCheckDigit = calculated2ndCheckDigit < 2 ? 0 : 11 - Int(calculated2ndCheckDigit)
         
-        // Compara os dígitos verificadores calculados com os fornecidos
+        // Compares the calculated verification digits with the provided ones
         if  firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
             return true
         } else {
