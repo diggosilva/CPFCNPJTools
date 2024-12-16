@@ -86,7 +86,7 @@ class CNPJView: UIView {
     
     @objc private func cnpjTextFieldMask() {
         let cnpj = textField.text ?? ""
-        let maskCNPJ = CNPJValidator.init().applyMask(cnpj: cnpj)
+        let maskCNPJ = String().applyMask(cnpj: cnpj)
         textField.text = maskCNPJ
         cnpjResult = maskCNPJ
     }
