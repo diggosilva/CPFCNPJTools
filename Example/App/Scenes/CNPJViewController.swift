@@ -42,13 +42,26 @@ extension CNPJViewController: CNPJViewDelegate {
         
         cnpjView.resultLabel.textColor = .label
         
-        let cnpjResult = CNPJValidator().validate(cnpj: cnpj)
-        switch cnpjResult {
-        case .valid:return cnpjView.resultLabel.text = "CNPJ válido."
-        case .cnpjNull: return cnpjView.resultLabel.text = "CNPJ não pode ser nulo ou vazio."
-        case .invalidFormat: return cnpjView.resultLabel.text = "CNPJ inválido.\nDeve ter 14 dígitos (apenas números)."
-        case .equalDigits: return cnpjView.resultLabel.text = "CNPJ inválido.\nTodos os dígitos são iguais."
-        case .invalid: return cnpjView.resultLabel.text = "Número de CNPJ inválido."
+        var cnpjStatus: CNPJStatus?
+        
+        if cnpj.isEmpty {
+            cnpjStatus = .cnpjNull
+        } else if cnpj.count != 14 {
+            cnpjStatus = .invalidFormat
+        } else if Set(cnpj).count == 1 {
+            cnpjStatus = .equalDigits
+        } else if !cnpj.isValidCNPJ() {
+            cnpjStatus = .invalid
+        }
+        if let status = cnpjStatus {
+            switch status {
+            case .cnpjNull: cnpjView.resultLabel.text = "CNPJ não pode ser nulo ou vazio."
+            case .invalidFormat: cnpjView.resultLabel.text = "CNPJ inválido.\nDeve ter 14 dígitos (apenas números)."
+            case .equalDigits: cnpjView.resultLabel.text = "CNPJ inválido.\nTodos os dígitos são iguais."
+            case .invalid: cnpjView.resultLabel.text = "Número de CNPJ inválido."
+            }
+        } else {
+            cnpjView.resultLabel.text = "CNPJ válido."
         }
     }
     
@@ -56,7 +69,7 @@ extension CNPJViewController: CNPJViewDelegate {
         cnpjView.textField.text = ""
         cnpjView.cnpjResult = ""
         cnpjView.resultLabel.textColor = .systemBrown
-        let cnpj = CNPJValidator().generateFakeCNPJMasked()
-        cnpjView.resultLabel.text = "Gerado CNPJ Fictício: \(cnpj ?? "")"
+        let cnpj = String().generateFakeCNPJ()
+        cnpjView.resultLabel.text = "Gerado CNPJ Fictício: \(cnpj)"
     }
 }
