@@ -11,6 +11,7 @@ import CPFCNPJTools
 class CPFViewController: UIViewController {
     
     let cpfView = CPFView()
+    let cpfManager = CPFManager()
     
     override func loadView() {
         super.loadView()
@@ -38,11 +39,10 @@ class CPFViewController: UIViewController {
 
 extension CPFViewController: CPFViewDelegate {
     func validateCPF() {
-        let cpf = cpfView.cpfResult.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        
         cpfView.resultLabel.textColor = .label
+        let cpf = cpfView.result.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
-        let cpfResult = CPFValidator().validate(cpf: cpf)
+        let cpfResult = CPFManager.validate(cpf: cpf)
         switch cpfResult {
         case .valid: return cpfView.resultLabel.text = "CPF válido."
         case .cpfNull: return cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
@@ -54,9 +54,9 @@ extension CPFViewController: CPFViewDelegate {
     
     func generateCPF() {
         cpfView.textField.text = ""
-        cpfView.cpfResult = ""
+        cpfView.result = ""
         cpfView.resultLabel.textColor = .systemIndigo
-        let cpf = CPFValidator().generateFakeCPFMasked()
+        let cpf = cpfManager.generateMasked()
         cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf ?? "")"
     }
 }
