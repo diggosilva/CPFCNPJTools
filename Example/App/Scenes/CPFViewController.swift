@@ -42,27 +42,13 @@ extension CPFViewController: CPFViewDelegate {
         
         cpfView.resultLabel.textColor = .label
         
-        var cpfStatus: CPFStatus?
-        
-        if cpf.isEmpty {
-            cpfStatus = .cpfNull
-        } else if cpf.count != 11 {
-            cpfStatus = .invalidFormat
-        } else if Set(cpf).count == 1 {
-            cpfStatus = .equalDigits
-        } else if !cpf.isValidCPF() {
-            cpfStatus = .invalid
-        }
-        
-        if let status = cpfStatus {
-            switch status {
-            case .cpfNull: cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
-            case .invalidFormat: cpfView.resultLabel.text = "CPF inválido.\nDeve ter 11 dígitos (apenas números)."
-            case .equalDigits: cpfView.resultLabel.text = "CPF inválido.\nTodos os dígitos são iguais."
-            case .invalid: cpfView.resultLabel.text = "Número de CPF inválido."
-            }
-        } else {
-            cpfView.resultLabel.text = "CPF válido."
+        let cpfResult = CPFValidator().validate(cpf: cpf)
+        switch cpfResult {
+        case .valid: return cpfView.resultLabel.text = "CPF válido."
+        case .cpfNull: return cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
+        case .invalidFormat: return cpfView.resultLabel.text = "CPF inválido.\nDeve ter 11 dígitos (apenas números)."
+        case .equalDigits: return cpfView.resultLabel.text = "CPF inválido.\nTodos os dígitos são iguais."
+        case .invalid: return cpfView.resultLabel.text = "Número de CPF inválido."
         }
     }
     
@@ -70,7 +56,7 @@ extension CPFViewController: CPFViewDelegate {
         cpfView.textField.text = ""
         cpfView.cpfResult = ""
         cpfView.resultLabel.textColor = .systemIndigo
-        let cpf = String().generateFakeCPF()
-        cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf)"
+        let cpf = CPFValidator().generateFakeCPFMasked()
+        cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf ?? "")"
     }
 }

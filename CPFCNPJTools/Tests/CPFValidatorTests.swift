@@ -8,96 +8,131 @@ class CPFValidatorTests: XCTestCase {
     }
     
     func testValidateWhenTheCPFIsNilOrEmpty() {
+        let sut = CPFValidator()
         let invalidCPF = ""
-        let result = invalidCPF.isValidCPF()
-        XCTAssertFalse(result, "O CPF vazio deveria retornar false, mas retornou \(result)")
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .cpfNull)
     }
     
     func testValidateWhenTheCPFsInvalidFormatWithLessThan11Characters() {
-        let invalidCPF = "1114447773"
-        let result = invalidCPF.isValidCPF()
-        XCTAssertFalse(result, "O CPF com menos de 11 caracteres deveria retornar false, mas retornou \(result)")
+        let sut = CPFValidator()
+        let invalidCPF = "123456789"
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .invalidFormat)
     }
     
     func testValidateWhenTheCPFsInvalidFormatWithMoreThan11Characters() {
-        let invalidCPF = "111444777350"
-        let result = invalidCPF.isValidCPF()
-        XCTAssertFalse(result, "O CPF com mais de 11 caracteres deveria retornar false, mas retornou \(result)")
+        let sut = CPFValidator()
+        let invalidCPF = "123456789101"
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .invalidFormat)
     }
     
-    func testValidateWhenTheCPFsValidWithFirstDigitIsZero() {
+    func testValidateWhenFirstDigitIsZero() {
+        let sut = CPFValidator()
         let validCPF = "12345678909"
-        let result = validCPF.isValidCPF()
-        XCTAssertTrue(result, "O CPF válido com o primeiro dígito 0 deveria retornar true, mas retornou \(result)")
+        let result = sut.validate(cpf: validCPF)
+        XCTAssertEqual(result, .valid)
     }
     
-    func testValidateWhenTheCPFsValidWithSecondDigitIsZero() {
+    func testValidateWhenSecondDigitIsZero() {
+        let sut = CPFValidator()
         let validCPF = "46761018480"
-        let result = validCPF.isValidCPF()
-        XCTAssertTrue(result, "O CPF válido com o segundo dígito 0 deveria retornar true, mas retornou \(result)")
+        let result = sut.validate(cpf: validCPF)
+        XCTAssertEqual(result, .valid)
     }
     
     func testValidateWhenTheCPFHasNonNumericCharacters() {
-        let invalidCPF = "123.456.78A-09"
-        let result = invalidCPF.isValidCPF()
-        XCTAssertFalse(result, "O CPF com caracteres não numéricos deveria retornar false, mas retornou \(result)")
+        let sut = CPFValidator()
+        let invalidCPF = "123.456.78a-90"
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .invalidFormat)
     }
     
     func testValidateWhenTheCPFIsEqualDigitsWith11Characters() {
+        let sut = CPFValidator()
         let invalidCPF = "11111111111"
-        let result = invalidCPF.isValidCPF()
-        XCTAssertFalse(result, "O CPF com 11 digitos iguais deveria retornar false, mas retornou \(result)")
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .equalDigits)
     }
     
     func testValidateWhenTheCPFIsValid() {
-        let validCPF = "11144477735"
-        let result = validCPF.isValidCPF()
-        XCTAssertTrue(result, "O CPF válido deveria retornar true, mas retornou \(result)")
+        let sut = CPFValidator()
+        let validCPF = "12345678909"
+        let result = sut.validate(cpf: validCPF)
+        XCTAssertEqual(result, .valid)
     }
     
     func testValidateWhenTheCPFIsInvalidWith11Characters() {
-        let invalidCPF = "11144477730"
-        let result = invalidCPF.isValidCPF()
-        XCTAssertFalse(result, "O CPF com 11 digitos inválidos deveria retornar false, mas retornou \(result)")
+        let sut = CPFValidator()
+        let invalidCPF = "12345678901"
+        let result = sut.validate(cpf: invalidCPF)
+        XCTAssertEqual(result, .invalid)
     }
     
     func testGenerateFakeCPFMasked() {
-        let fakeCPF = String().generateFakeCPF()
-        let result = fakeCPF.isValidCPF()
-        XCTAssertTrue(result, "O CPF gerado aleatoriamente deveria ser válido, mas retornou \(result)")
-        
-        let fakeCPFMasked = fakeCPF.applyMask(cpf: fakeCPF)
-        XCTAssertNotNil(fakeCPFMasked, "O CPF gerado não tem o formato correto")
+        let sut = CPFValidator()
+        let result = sut.generateFakeCPFMasked()
+        XCTAssertNotNil(result)
+       
+        // Expressão regular para verificar o formato do CPF
+        let regex = try! NSRegularExpression(pattern: "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$")
+        let range = NSRange(location: 0, length: result!.utf16.count)
+        let match = regex.firstMatch(in: result!, options: [], range: range)
+
+//        // Verifique se há uma correspondência
+        XCTAssertNotNil(match, "O CPF gerado não tem o formato esperado")
     }
     
     func testGenerateFakeCPF() {
-        let fakeCPF = String().generateFakeCPF()
-        let result = fakeCPF.isValidCPF()
-        let fakeCPFClean = fakeCPF.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        
-        XCTAssertTrue(result, "O CPF gerado aleatoriamente deveria ser válido, mas retornou \(result)")
-        XCTAssertTrue(fakeCPFClean.count == 11)
+        let sut = CPFValidator()
+        let result = sut.generateFakeCPF()
+        XCTAssertTrue(result.count == 11)
+    }
+    
+    func testGenerateFakeCPFIsValid() {
+        let sut = CPFValidator()
+        let result = sut.generateFakeCPF()
+        let resultValidation = sut.validate(cpf: result)
+        XCTAssertEqual(resultValidation, .valid)
+    }
+    
+    func testFormatCPFWhenContains11Digits() {
+        let sut = CPFValidator()
+        let unformattedCPF = "12345678910"
+        let expectedFormattedCPF = "123.456.789-10"
+        let result = sut.formattedCPF(unformattedCPF)
+        XCTAssertEqual(result, expectedFormattedCPF)
+    }
+    
+    func testFormatCPFContainsLessThan11Digits() {
+        let sut = CPFValidator()
+        let lessThan11DigitsCPF = "123456789"
+        let result = sut.formattedCPF(lessThan11DigitsCPF)
+        XCTAssertNil(result)
+    }
+    
+    func testFormatCPFContainsMoreThan11Digits() {
+        let sut = CPFValidator()
+        let lessThan11DigitsCPF = "123456789101"
+        let result = sut.formattedCPF(lessThan11DigitsCPF)
+        XCTAssertNil(result)
     }
     
     func testApplyCPFMask() {
-        let unmaskedCPF = "11144477735"
-        let expectedMaskedCPF = "111.444.777-35"
-        let result = String().applyMask(cpf: unmaskedCPF)
+        let sut = CPFValidator()
+        let unmaskedCPF = "12345678910"
+        let expectedMaskedCPF = "123.456.789-10"
+        let result = sut.applyMask(cpf: unmaskedCPF)
         XCTAssertEqual(result, expectedMaskedCPF)
     }
     
-    func testApplyCPFMaskLessThan11Digits() {
-        let unformattedCPF = "1114447773"
-        let expectedFormattedCPF = "111.444.777-3"
-        let result = String().applyMask(cpf: unformattedCPF)
-        XCTAssertEqual(result, expectedFormattedCPF)
-    }
-    
     func testApplyCPFMaskMoreThan11Digits() {
-        let unformattedCPF = "111444777350"
-        let expectedFormattedCPF = "111.444.777-35"
-        let result = String().applyMask(cpf: unformattedCPF)
-        XCTAssertEqual(result, expectedFormattedCPF)
+        let sut = CPFValidator()
+        let unmaskedCPF = "123456789101"
+        let expectedMaskedCPF = "123.456.789-10"
+        let result = sut.applyMask(cpf: unmaskedCPF)
+        XCTAssertEqual(result, expectedMaskedCPF)
     }
     
     override class func tearDown() {
