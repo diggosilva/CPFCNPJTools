@@ -18,10 +18,12 @@ public enum CPFStatus {
 /// The `CPFValidator` class is responsible for validating, generating, and formatting CPF numbers (Brazilian Individual Taxpayer Registry).
 ///
 /// It provides methods to validate a CPF, generate fake CPFs, format a CPF into a readable format, and apply a mask to the CPF.
-public class CPFValidator {
+public class CPFManager {
+    let string: String
     
     /// Inicializa um novo validador de CPF.
-    public init() {}
+    public init(string: String) {
+        self.string = string
     
     /// Validates a provided CPF, checking its format and verifying if the check digits are correct.
     /// - Parameter cpf: The CPF to be validated.

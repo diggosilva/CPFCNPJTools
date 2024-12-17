@@ -72,7 +72,7 @@ class CPFView: UIView {
         return btn
     }()
     
-    var cpfResult = ""
+    var result = ""
     weak var delegate: CPFViewDelegate?
     
     override init(frame: CGRect) {
@@ -86,9 +86,9 @@ class CPFView: UIView {
     
     @objc private func cpfTextFieldMask() {
         let cpf = textField.text ?? ""
-        let maskCPF = CPFValidator.init().applyMask(cpf: cpf)
+        let maskCPF = CPFManager.mask(cpf: cpf)
         textField.text = maskCPF
-        cpfResult = maskCPF
+        result = maskCPF
     }
     
     @objc private func validateCPF() {
