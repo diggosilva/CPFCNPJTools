@@ -11,42 +11,39 @@ public enum CPFStatus {
     case cpfNull       // CPF cannot be null or empty.
     case invalidFormat // Invalid CPF.\nCPF must have 11 digits (only numbers).
     case equalDigits   // CPF with repeated digits is not valid (e.g., 111.111.111-11, which is invalid because it's a repeated number).
+    case valid         // Valid CPF.
     case invalid       // Invalid CPF.
 }
 
-extension String {
+/// The `CPFValidator` class is responsible for validating, generating, and formatting CPF numbers (Brazilian Individual Taxpayer Registry).
+///
+/// It provides methods to validate a CPF, generate fake CPFs, format a CPF into a readable format, and apply a mask to the CPF.
+public class CPFValidator {
+    
+    /// Inicializa um novo validador de CPF.
+    public init() {}
     
     /// Validates a provided CPF, checking its format and verifying if the check digits are correct.
+    /// - Parameter cpf: The CPF to be validated.
     /// - Returns: A `CPFStatus` value indicating the result of the validation.
     ///
     /// **Usage example:**
     /// ```swift
-    /// let result = String().isValidCPF()
-    /// print(result) // true or false
+    /// let validator = CPFValidator()
+    /// let result = validator.validate(cpf: "11144477735")
+    /// print(result) // .valid or .invalid
     /// ```
-    ///
-    /// * Important: *
-    /// This method removes any non-numeric characters before validating the CPF. It validates CPFs that include only digits (0-9).
-    public func isValidCPF() -> Bool {
+    public func validate(cpf: String) -> CPFStatus {
         // Clears the CPF, removing non-numeric characters
-        let cleanedCPF = self.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        let cleanedCPF = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
-        guard cleanedCPF.count > 0 else {
-            print("DEBUG: CPF não pode ser nulo ou vazio")
-            return false
-        }
+        guard cleanedCPF.count > 0 else { return .cpfNull }
         
         // Checks if the CPF has 11 digits
-        guard cleanedCPF.count == 11, cleanedCPF.allSatisfy({ $0.isNumber }) else {
-            print("DEBUG: CPF inválido.\nDEBUG: Deve ter 11 dígitos.")
-            return false
-        }
+        guard cleanedCPF.count == 11, cleanedCPF.allSatisfy({ $0.isNumber }) else { return .invalidFormat }
         
         // Checks if all digits are the same
-        if Set(cleanedCPF).count == 1 {
-            print("DEBUG: CPF inválido.\nDEBUG: Todos os dígitos são iguais.")
-            return false
-        }
+        if Set(cleanedCPF).count == 1 { return .equalDigits }
         
         // Divides the CPF into the first 9 digits and the last 2 (verification digits)
         let cpfBaseDigits = cleanedCPF.prefix(9).compactMap({ Int(String($0)) })
@@ -62,9 +59,9 @@ extension String {
         
         // Compares the calculated verification digits with the provided ones
         if firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
-            return true
+            return .valid
         } else {
-            return false
+            return .invalid
         }
     }
     
@@ -76,7 +73,8 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let fakeCPF = String().generateFakeCPF()
+    /// let validator = CPFValidator()
+    /// let fakeCPF = validator.generateFakeCPF()
     /// print(fakeCPF) // "11144477735"
     /// ```
     public func generateFakeCPF() -> String {
@@ -90,7 +88,23 @@ extension String {
         
         let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
         
-        return "\(formattedCPF(generatedFakeCPF) ?? "")"
+        return validate(cpf: generatedFakeCPF) == .valid ? generatedFakeCPF : generateFakeCPF()
+    }
+    
+    /// Generates a fake CPF with a mask (readable format).
+    ///
+    /// This method generates a fake CPF and applies the formatting in the "xxx.xxx.xxx-xx" pattern.
+    ///
+    /// - Returns: The generated fake CPF with the applied mask, or `nil` if the CPF cannot be generated.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let validator = CPFValidator()
+    /// let fakeCPFMasked = validator.generateFakeCPFMasked()
+    /// print(fakeCPFMasked) // "111.444.777-35"
+    /// ```
+    public func generateFakeCPFMasked() -> String? {
+        return formattedCPF(generateFakeCPF())
     }
     
     /// Formats a CPF in the "xxx.xxx.xxx-xx" pattern.
@@ -99,7 +113,7 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let formatted = String().formattedCPF("11144477735")
+    /// let formatted = validator.formattedCPF("11144477735")
     /// print(formatted) // "111.444.777-35"
     /// ```
     public func formattedCPF(_ cpf: String) -> String? {
@@ -117,7 +131,7 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let checkSum = String().calculateCPFCheckSum(cpfBaseDigits: [1, 1, 1, 4, 4, 4, 7, 7, 7], multiplyBy: 10)
+    /// let checkSum = validator.calculateCPFCheckSum(cpfBaseDigits: [1, 1, 1, 4, 4, 4, 7, 7, 7], multiplyBy: 10)
     /// print(checkSum) // Result of the calculation
     /// ```
     public func calculateCPFCheckSum(cpfBaseDigits: [Int], multiplyBy: Int) -> Int {
@@ -138,7 +152,7 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let maskedCPF = String().applyMask(cpf: "11144477735")
+    /// let maskedCPF = validator.applyMask(cpf: "11144477735")
     /// print(maskedCPF) // "111.444.777-35"
     /// ```
     public func applyMask(cpf: String) -> String {

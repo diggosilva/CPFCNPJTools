@@ -11,8 +11,6 @@
 		46ED7AA21804C8AB7CC8A0B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40560421C1FD370340A0832E /* SceneDelegate.swift */; };
 		4E0EF8ABBEA8A8C65A8A2606 /* CPFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3C6D25A06375D32DF021C9 /* CPFView.swift */; };
 		5F2F40CAE89E8533908440C0 /* Pods_ExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E05E0F7A66191941F66E34 /* Pods_ExampleApp.framework */; };
-		92D019982D0F84BA00FD34B3 /* CNPJAlphaNumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D019972D0F84BA00FD34B3 /* CNPJAlphaNumViewController.swift */; };
-		92D914A02D0F3FB8003303CD /* CNPJAlphaNumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D9149F2D0F3FB8003303CD /* CNPJAlphaNumView.swift */; };
 		A37E179AA6A2C4FBFD924B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C9BA92B4C370D66B9AB0595 /* Assets.xcassets */; };
 		A98CB7C86FE6AEC3E11ADCA9 /* CNPJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6156BBB8181F60B3B9C84AD /* CNPJView.swift */; };
 		B3D09AEEDED822E8E933365F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B469EE5E62EA7B070AA830 /* AppDelegate.swift */; };
@@ -30,8 +28,6 @@
 		67B469EE5E62EA7B070AA830 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A53516ECC83C5AABFEEA484 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8853E1374B93AF899C4C740C /* CNPJViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJViewController.swift; sourceTree = "<group>"; };
-		92D019972D0F84BA00FD34B3 /* CNPJAlphaNumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJAlphaNumViewController.swift; sourceTree = "<group>"; };
-		92D9149F2D0F3FB8003303CD /* CNPJAlphaNumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJAlphaNumView.swift; sourceTree = "<group>"; };
 		9B41770CE94903B386BF7615 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B7E05E0F7A66191941F66E34 /* Pods_ExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC48DC4593B91154442D4D5B /* Pods-ExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-ExampleApp/Pods-ExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,8 +103,6 @@
 		901820CAFF048E2BA97C4B95 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				92D9149F2D0F3FB8003303CD /* CNPJAlphaNumView.swift */,
-				92D019972D0F84BA00FD34B3 /* CNPJAlphaNumViewController.swift */,
 				C6156BBB8181F60B3B9C84AD /* CNPJView.swift */,
 				8853E1374B93AF899C4C740C /* CNPJViewController.swift */,
 				EB3C6D25A06375D32DF021C9 /* CPFView.swift */,
@@ -246,8 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92D914A02D0F3FB8003303CD /* CNPJAlphaNumView.swift in Sources */,
-				92D019982D0F84BA00FD34B3 /* CNPJAlphaNumViewController.swift in Sources */,
 				B3D09AEEDED822E8E933365F /* AppDelegate.swift in Sources */,
 				A98CB7C86FE6AEC3E11ADCA9 /* CNPJView.swift in Sources */,
 				09C9891C2380480D6543BD4E /* CNPJViewController.swift in Sources */,

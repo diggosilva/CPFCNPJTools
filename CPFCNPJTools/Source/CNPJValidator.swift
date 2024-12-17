@@ -11,42 +11,39 @@ public enum CNPJStatus {
     case cnpjNull      // CNPJ cannot be null or empty.
     case invalidFormat // Invalid CNPJ.\nCNPJ must have 14 digits (only numbers).
     case equalDigits   // CNPJ with repeated digits is not valid (e.g., 11.111.111/0001-11, which is invalid because it's a repeated number).
+    case valid         // Valid CNPJ.
     case invalid       // Invalid CNPJ.
 }
 
-extension String {
+/// The `CNPJValidator` class is responsible for validating, generating, and formatting CNPJ numbers (Brazilian National Registry of Legal Entities).
+///
+/// It provides methods to validate a CNPJ, generate fake CNPJs, format a CNPJ into a readable format, and apply a mask to the CNPJ.
+public class CNPJValidator {
+    /// Initializes a new CNPJValidator.
+    public init() {}
     
     /// Validates a provided CNPJ, checking its format and verifying if the check digits are correct.
+    ///
+    /// - Parameter cnpj: The CNPJ to be validated.
     /// - Returns: A `CNPJStatus` value indicating the result of the validation.
     ///
     /// **Usage example:**
     /// ```swift
-    /// let result = String().isValidCNPJ()
-    /// print(result) // true or false
+    /// let validator = CNPJValidator()
+    /// let result = validator.validate(cnpj: "11444777000161")
+    /// print(result) // .valid or .invalid
     /// ```
-    ///
-    /// * Important: *
-    ///  This method removes any non-numeric characters before validating the CNPJ. It validates CNPJs that include only digits (0-9).
-    public func isValidCNPJ() -> Bool {
+    public func validate(cnpj: String) -> CNPJStatus {
         // Clears the CPF, removing non-numeric characters
-        let clearedCNPJ = self.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        let clearedCNPJ = cnpj.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
-        guard clearedCNPJ.count > 0 else {
-            print("DEBUG: CNPJ não pode ser nulo ou vazio")
-            return false
-        }
+        guard clearedCNPJ.count > 0 else { return .cnpjNull }
         
         // Checks if the CPF has 14 digits
-        guard clearedCNPJ.count == 14, clearedCNPJ.allSatisfy({ $0.isNumber }) else {
-            print("DEBUG: CNPJ inválido.\nDEBUG: Deve ter 14 dígitos.")
-            return false
-        }
+        guard clearedCNPJ.count == 14, clearedCNPJ.allSatisfy({ $0.isNumber }) else { return .invalidFormat }
         
         // Checks if all digits are the same
-        if Set(clearedCNPJ).count == 1 {
-            print("DEBUG: CNPJ inválido.\nDEBUG: Todos os dígitos são iguais.")
-            return false
-        }
+        if Set(clearedCNPJ).count == 1 { return .equalDigits }
         
         // Divides the CNPJ into the first 12 digits and the last 2 (verification digits)
         let cnpjBaseDigits = clearedCNPJ.prefix(12).compactMap({ Int(String($0)) })
@@ -65,9 +62,9 @@ extension String {
         
         // Compares the calculated verification digits with the provided ones
         if firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
-            return true
+            return .valid
         } else {
-            return false
+            return .invalid
         }
     }
     
@@ -79,7 +76,8 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let fakeCNPJ = String().generateFakeCNPJ()
+    /// let validator = CNPJValidator()
+    /// let fakeCNPJ = validator.generateFakeCNPJ()
     /// print(fakeCNPJ) // "11444777000161"
     /// ```
     public func generateFakeCNPJ() -> String {
@@ -96,7 +94,23 @@ extension String {
         calculated2ndCheckDigit < 2 ? cnpj12Digits.append(0) : cnpj12Digits.append(11 - Int(calculated2ndCheckDigit))
         
         let generatedFakeCNPJ = cnpj12Digits.compactMap({ String($0) }).joined()
-        return formattedCNPJ(generatedFakeCNPJ) ?? ""
+        return validate(cnpj: generatedFakeCNPJ) == .valid ? generatedFakeCNPJ : generateFakeCNPJ()
+    }
+    
+    /// Generates a fake CNPJ with a mask (readable format).
+    ///
+    /// This method generates a fake CNPJ and applies the formatting in the "xx.xxx.xxx/xxxx-xx" pattern.
+    ///
+    /// - Returns: The generated fake CNPJ with the applied mask, or `nil` if the CNPJ cannot be generated.
+    ///
+    /// **Usage example:**
+    /// ```swift
+    /// let validator = CNPJValidator()
+    /// let fakeCNPJMasked = validator.generateFakeCNPJMasked()
+    /// print(fakeCNPJMasked) // "11.444.777/0001-61"
+    /// ```
+    public func generateFakeCNPJMasked() -> String? {
+        return formattedCNPJ(generateFakeCNPJ())
     }
     
     /// Formats a CNPJ in the "xx.xxx.xxx/xxxx-xx" pattern.
@@ -106,11 +120,11 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let formatted = String().formattedCNPJ("11444777000161")
+    /// let formatted = validator.formattedCNPJ("11444777000161")
     /// print(formatted) // "11.444.777/0001-61"
     /// ```
-    func formattedCNPJ(_ cnpj: String) -> String? {
-        guard cnpj.count == 14 else { return nil }
+    func formattedCNPJ(_ cnpj: String) -> String {
+        guard cnpj.count == 14 else { return cnpj }
         let formattedCNPJ = "\(cnpj.prefix(2)).\(cnpj.dropFirst(2).prefix(3)).\(cnpj.dropFirst(5).prefix(3))/\(cnpj.dropFirst(8).prefix(4))-\(cnpj.suffix(2))"
         return formattedCNPJ
     }
@@ -124,7 +138,7 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let checkSum = String().calculatedCNPJCheckSum(cnpj12Digits: [1, 1, 4, 4, 4, 7, 7, 7, 0, 0, 0, 1], multiplyBy: [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2])
+    /// let checkSum = validator.calculatedCNPJCheckSum(cnpj12Digits: [1, 1, 4, 4, 4, 7, 7, 7, 0, 0, 0, 1], multiplyBy: [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2])
     /// print(checkSum) // Result of the calculation
     /// ```
     func calculatedCNPJCheckSum(cnpj12Digits: [Int], multiplyBy: [Int]) -> Int {
@@ -139,7 +153,7 @@ extension String {
     ///
     /// **Usage example:**
     /// ```swift
-    /// let maskedCNPJ = String().applyMask(cnpj: "11444777000161")
+    /// let maskedCNPJ = validator.applyMask(cnpj: "11444777000161")
     /// print(maskedCNPJ) // "11.444.777/0001-61"
     /// ```
     public func applyMask(cnpj: String) -> String {
