@@ -103,10 +103,10 @@
 		901820CAFF048E2BA97C4B95 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				C6156BBB8181F60B3B9C84AD /* CNPJView.swift */,
-				8853E1374B93AF899C4C740C /* CNPJViewController.swift */,
-				EB3C6D25A06375D32DF021C9 /* CPFView.swift */,
 				32EA94B16BB5EC8890E91559 /* CPFViewController.swift */,
+				EB3C6D25A06375D32DF021C9 /* CPFView.swift */,
+				8853E1374B93AF899C4C740C /* CNPJViewController.swift */,
+				C6156BBB8181F60B3B9C84AD /* CNPJView.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
