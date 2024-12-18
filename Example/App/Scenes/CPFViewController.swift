@@ -42,7 +42,7 @@ extension CPFViewController: CPFViewDelegate {
         cpfView.resultLabel.textColor = .label
         let cpf = cpfView.result.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
-        let cpfResult = CPFManager.validate(cpf: cpf)
+        let cpfResult = cpfManager.validate(cpf: cpf)
         switch cpfResult {
         case .valid: return cpfView.resultLabel.text = "CPF válido."
         case .cpfNull: return cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
@@ -56,7 +56,6 @@ extension CPFViewController: CPFViewDelegate {
         cpfView.textField.text = ""
         cpfView.result = ""
         cpfView.resultLabel.textColor = .systemIndigo
-        let cpf = cpfManager.generateMasked()
-        cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpf ?? "")"
+        cpfView.resultLabel.text = "Gerado CPF Fictício: \(cpfManager.generateMasked() ?? "")"
     }
 }
