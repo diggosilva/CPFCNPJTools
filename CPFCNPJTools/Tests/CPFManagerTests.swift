@@ -1,7 +1,7 @@
 import XCTest
 import CPFCNPJTools
 
-class CPFValidatorTests: XCTestCase {
+class CPFManagerTests: XCTestCase {
     let sut = CPFManager()
     
     override class func setUp() {
