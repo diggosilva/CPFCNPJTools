@@ -124,18 +124,6 @@ public class CPFManager {
         return formattedCPF
     }
     
-    /// Calculates the checksum of the CPF base digits for verifying the CPF digits.
-    ///
-    /// - Parameter cpfBaseDigits: The first 9 digits of the CPF.
-    /// - Parameter multiplyBy: The starting multiplier value (10 for the first digit, 11 for the second).
-    /// - Returns: The sum of the products of the digits and their respective multipliers.
-    ///
-    /// **Example:**
-    /// ```swift
-    /// let cpfManager = CPFManager()
-    /// let checksum = cpfManager.calculateCPFCheckSum(cpfBaseDigits: [1, 2, 3, 4, 5, 6, 7, 8, 9], multiplyBy: 10)
-    /// print(checksum)  // Result of calculation
-    /// ```
     private func calculateCPFCheckSum(cpfBaseDigits: [Int], multiplyBy: Int) -> Int {
         var multiplyBy = multiplyBy
         var checkSum = 0
