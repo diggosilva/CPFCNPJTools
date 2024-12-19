@@ -14,21 +14,6 @@ protocol CPFViewDelegate: AnyObject {
 }
 
 class CPFView: UIView {
-    lazy var backgroundView: UIView = {
-        let bgView = UIView()
-        bgView.translatesAutoresizingMaskIntoConstraints = false
-        bgView.backgroundColor = .white
-        bgView.layer.cornerRadius = 50
-        bgView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner] // Apenas os cantos superior esquerdo e inferior direito
-        bgView.layer.shadowColor = UIColor.black.cgColor
-        bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        bgView.layer.shadowOpacity = 0.5
-        bgView.layer.shadowRadius = 5.0
-        bgView.layer.borderWidth = 1
-        bgView.layer.borderColor = UIColor.systemGray2.cgColor
-        return bgView
-    }()
-    
     lazy var resultLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +57,8 @@ class CPFView: UIView {
         return btn
     }()
     
-    var cpfResult = ""
+    var result = ""
+    var cpfManager = CPFManager()
     weak var delegate: CPFViewDelegate?
     
     override init(frame: CGRect) {
@@ -85,10 +71,9 @@ class CPFView: UIView {
     }
     
     @objc private func cpfTextFieldMask() {
-        let cpf = textField.text ?? ""
-        let maskCPF = CPFValidator.init().applyMask(cpf: cpf)
+        let maskCPF = cpfManager.mask(cpf: textField.text ?? "")
         textField.text = maskCPF
-        cpfResult = maskCPF
+        result = maskCPF
     }
     
     @objc private func validateCPF() {
@@ -106,22 +91,17 @@ class CPFView: UIView {
     
     private func setHierarchy() {
         backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
-        addSubviews([backgroundView, resultLabel, textField, validateCPFbutton, generateCPFbutton])
+        addSubviews([resultLabel, textField, validateCPFbutton, generateCPFbutton])
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            backgroundView.heightAnchor.constraint(equalToConstant: 150),
-            backgroundView.widthAnchor.constraint(equalToConstant: 300),
+            resultLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            resultLabel.heightAnchor.constraint(equalToConstant: 150),
+            resultLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            resultLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            resultLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-            resultLabel.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
-            resultLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
-            resultLabel.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
-            
-            textField.topAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: 30),
+            textField.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 30),
             textField.centerXAnchor.constraint(equalTo: centerXAnchor),
             textField.widthAnchor.constraint(equalToConstant: 300),
             
