@@ -11,6 +11,7 @@ import CPFCNPJTools
 class CNPJViewController: UIViewController {
     
     let cnpjView = CNPJView()
+    let cnpjManager = CNPJManager()
     
     override func loadView() {
         super.loadView()
@@ -38,11 +39,10 @@ class CNPJViewController: UIViewController {
 
 extension CNPJViewController: CNPJViewDelegate {
     func validateCNPJ() {
-        let cnpj = cnpjView.cnpjResult.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        
         cnpjView.resultLabel.textColor = .label
+        let cnpj = cnpjView.result.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
-        let cnpjResult = CNPJValidator().validate(cnpj: cnpj)
+        let cnpjResult = cnpjManager.validate(cnpj: cnpj)
         switch cnpjResult {
         case .valid:return cnpjView.resultLabel.text = "CNPJ válido."
         case .cnpjNull: return cnpjView.resultLabel.text = "CNPJ não pode ser nulo ou vazio."
@@ -54,9 +54,8 @@ extension CNPJViewController: CNPJViewDelegate {
     
     func generateCNPJ() {
         cnpjView.textField.text = ""
-        cnpjView.cnpjResult = ""
+        cnpjView.result = ""
         cnpjView.resultLabel.textColor = .systemBrown
-        let cnpj = CNPJValidator().generateFakeCNPJMasked()
-        cnpjView.resultLabel.text = "Gerado CNPJ Fictício: \(cnpj ?? "")"
+        cnpjView.resultLabel.text = "Gerado CNPJ Fictício: \(cnpjManager.generateMasked() ?? "")"
     }
 }
