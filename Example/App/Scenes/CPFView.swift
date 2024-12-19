@@ -58,6 +58,7 @@ class CPFView: UIView {
     }()
     
     var result = ""
+    var cpfManager = CPFManager()
     weak var delegate: CPFViewDelegate?
     
     override init(frame: CGRect) {
@@ -70,7 +71,7 @@ class CPFView: UIView {
     }
     
     @objc private func cpfTextFieldMask() {
-        let maskCPF = CPFManager().mask(cpf: textField.text ?? "")
+        let maskCPF = cpfManager.mask(cpf: textField.text ?? "")
         textField.text = maskCPF
         result = maskCPF
     }
