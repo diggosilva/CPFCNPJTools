@@ -66,12 +66,9 @@ class CPFManagerTests: XCTestCase {
         let result = sut.generateMasked()
         XCTAssertNotNil(result)
        
-        // Expressão regular para verificar o formato do CPF
         let regex = try! NSRegularExpression(pattern: "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$")
         let range = NSRange(location: 0, length: result!.utf16.count)
         let match = regex.firstMatch(in: result!, options: [], range: range)
-
-//        // Verifique se há uma correspondência
         XCTAssertNotNil(match, "O CPF gerado não tem o formato esperado")
     }
     
