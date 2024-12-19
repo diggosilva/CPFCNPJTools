@@ -2,55 +2,49 @@ import XCTest
 import CPFCNPJTools
 
 class CNPJManagerTests: XCTestCase {
+    let sut = CNPJManager()
     
     override class func setUp() {
         super .setUp()
     }
     
     func testValidateWhenTheCNPJIsNilOrEmpty() {
-        let sut = CNPJManager()
         let validCNPJ = ""
         let result = sut.validate(cnpj: validCNPJ)
         XCTAssertEqual(result, .cnpjNull)
     }
     
     func testValidateWhenTheCNPJIsInvalidFormatWithLessThan14Characters() {
-        let sut = CNPJManager()
-        let invalidCNPJ = "1234567800010"
+        let invalidCNPJ = "1144477700016"
         let result = sut.validate(cnpj: invalidCNPJ)
         XCTAssertEqual(result, .invalidFormat)
     }
     
     func testValidateWhenTheCNPJIsInvalidFormatWithMoreThan14Characters() {
-        let sut = CNPJManager()
-        let invalidCNPJ = "123456780001012"
+        let invalidCNPJ = "114447770001610"
         let result = sut.validate(cnpj: invalidCNPJ)
         XCTAssertEqual(result, .invalidFormat)
     }
     
     func testValidateWhenTheCNPJIsEqualDigitsWith14Characters() {
-        let sut = CNPJManager()
         let invalidCNPJ = "11111111111111"
         let result = sut.validate(cnpj: invalidCNPJ)
         XCTAssertEqual(result, .equalDigits)
     }
     
     func testValidateWhenTheCNPJIsValid() {
-        let sut = CNPJManager()
-        let validCNPJ = "44024904000122"
+        let validCNPJ = "11444777000161"
         let result = sut.validate(cnpj: validCNPJ)
         XCTAssertEqual(result, .valid)
     }
     
     func testValidateWhenTheCNPJIsInvalidWith14Characters() {
-        let sut = CNPJManager()
-        let invalidCNPJ = "12345678000190"
+        let invalidCNPJ = "11444777000160"
         let result = sut.validate(cnpj: invalidCNPJ)
         XCTAssertEqual(result, .invalid)
     }
     
     func testGeneratedFakeCNPJMasked() {
-        let sut = CNPJManager()
         let result = sut.generateMasked()
         XCTAssertNotNil(result)
         
@@ -61,23 +55,27 @@ class CNPJManagerTests: XCTestCase {
     }
     
     func testGeneratedFakeCNPJ() {
-        let sut = CNPJManager()
-        let result = sut.generate()
-        XCTAssertTrue(result.count == 14)
+        let result = sut.generateMasked()
+        let cnpjClean = result?.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        XCTAssertTrue(cnpjClean?.count == 14)
+    }
+    
+    func testGenerateFakeCNPJIsValid() {
+        let result = sut.generateMasked() ?? ""
+        let resultValidation = sut.validate(cnpj: result)
+        XCTAssertEqual(resultValidation, .valid)
     }
     
     func testApplyCNPJMask() {
-        let sut = CNPJManager()
-        let unmaskedCNPJ = "12345678000190"
-        let expectedMaskedCNPJ = "12.345.678/0001-90"
+        let unmaskedCNPJ = "11444777000161"
+        let expectedMaskedCNPJ = "11.444.777/0001-61"
         let result = sut.mask(cnpj: unmaskedCNPJ)
         XCTAssertEqual(result, expectedMaskedCNPJ)
     }
     
     func testApplyCNPJMaskMoreThan14Digits() {
-        let sut = CNPJManager()
-        let unmaskedCNPJ = "123456780001001"
-        let expectedMaskedCNPJ = "12.345.678/0001-00"
+        let unmaskedCNPJ = "114447770001610"
+        let expectedMaskedCNPJ = "11.444.777/0001-61"
         let result = sut.mask(cnpj: unmaskedCNPJ)
         XCTAssertEqual(result, expectedMaskedCNPJ)
     }
