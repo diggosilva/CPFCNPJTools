@@ -45,10 +45,10 @@ extension CNPJViewController: CNPJViewDelegate {
         let cnpjResult = cnpjManager.validate(cnpj: cnpj)
         switch cnpjResult {
         case .valid:return cnpjView.resultLabel.text = "CNPJ válido."
-        case .cnpjNull: return cnpjView.resultLabel.text = "CNPJ não pode ser nulo ou vazio."
-        case .invalidFormat: return cnpjView.resultLabel.text = "CNPJ inválido.\nDeve ter 14 dígitos (apenas números)."
-        case .equalDigits: return cnpjView.resultLabel.text = "CNPJ inválido.\nTodos os dígitos são iguais."
         case .invalid: return cnpjView.resultLabel.text = "Número de CNPJ inválido."
+        case .cnpjNull: return cnpjView.resultLabel.text = "CNPJ não pode ser nulo ou vazio."
+        case .equalDigits: return cnpjView.resultLabel.text = "CNPJ inválido.\nTodos os dígitos são iguais."
+        case .invalidFormat: return cnpjView.resultLabel.text = "CNPJ inválido.\nDeve ter 14 dígitos (apenas números)."
         }
     }
     
