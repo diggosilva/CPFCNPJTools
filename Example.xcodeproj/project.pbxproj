@@ -3,38 +3,36 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09C9891C2380480D6543BD4E /* CNPJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8853E1374B93AF899C4C740C /* CNPJViewController.swift */; };
 		46ED7AA21804C8AB7CC8A0B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40560421C1FD370340A0832E /* SceneDelegate.swift */; };
-		4E0EF8ABBEA8A8C65A8A2606 /* CPFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3C6D25A06375D32DF021C9 /* CPFView.swift */; };
 		5F2F40CAE89E8533908440C0 /* Pods_ExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E05E0F7A66191941F66E34 /* Pods_ExampleApp.framework */; };
 		A37E179AA6A2C4FBFD924B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C9BA92B4C370D66B9AB0595 /* Assets.xcassets */; };
-		A98CB7C86FE6AEC3E11ADCA9 /* CNPJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6156BBB8181F60B3B9C84AD /* CNPJView.swift */; };
 		B3D09AEEDED822E8E933365F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B469EE5E62EA7B070AA830 /* AppDelegate.swift */; };
 		BB5F0C8BC3B549C27F296A02 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41770CE94903B386BF7615 /* Extensions.swift */; };
-		C35E55F33B04625D390B778B /* CPFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EA94B16BB5EC8890E91559 /* CPFViewController.swift */; };
 		DBBB9FBBB064F22E6457239B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A344D9FE16DB65FFDFB497 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E4E50872E45B6FAD050CA23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1A151F53A46E0A3C6BE54B01 /* Pods-ExampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.release.xcconfig"; path = "Target Support Files/Pods-ExampleApp/Pods-ExampleApp.release.xcconfig"; sourceTree = "<group>"; };
-		32EA94B16BB5EC8890E91559 /* CPFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFViewController.swift; sourceTree = "<group>"; };
 		40560421C1FD370340A0832E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5C9BA92B4C370D66B9AB0595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67B469EE5E62EA7B070AA830 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A53516ECC83C5AABFEEA484 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8853E1374B93AF899C4C740C /* CNPJViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJViewController.swift; sourceTree = "<group>"; };
 		9B41770CE94903B386BF7615 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B7E05E0F7A66191941F66E34 /* Pods_ExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC48DC4593B91154442D4D5B /* Pods-ExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-ExampleApp/Pods-ExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C6156BBB8181F60B3B9C84AD /* CNPJView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJView.swift; sourceTree = "<group>"; };
 		DFCEAAE68600F9CA99294FFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EB3C6D25A06375D32DF021C9 /* CPFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		92D9CFE72D15EA78006C34D8 /* CPF */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CPF; sourceTree = "<group>"; };
+		92D9CFE82D15EA87006C34D8 /* CNPJ */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CNPJ; sourceTree = "<group>"; };
+		92D9CFE92D15EA9B006C34D8 /* CNPJAlphaNum */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CNPJAlphaNum; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B231B22ABE28FEE48F9C3F81 /* Frameworks */ = {
@@ -103,10 +101,9 @@
 		901820CAFF048E2BA97C4B95 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				32EA94B16BB5EC8890E91559 /* CPFViewController.swift */,
-				EB3C6D25A06375D32DF021C9 /* CPFView.swift */,
-				8853E1374B93AF899C4C740C /* CNPJViewController.swift */,
-				C6156BBB8181F60B3B9C84AD /* CNPJView.swift */,
+				92D9CFE72D15EA78006C34D8 /* CPF */,
+				92D9CFE82D15EA87006C34D8 /* CNPJ */,
+				92D9CFE92D15EA9B006C34D8 /* CNPJAlphaNum */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -148,6 +145,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				92D9CFE72D15EA78006C34D8 /* CPF */,
+				92D9CFE82D15EA87006C34D8 /* CNPJ */,
+				92D9CFE92D15EA9B006C34D8 /* CNPJAlphaNum */,
 			);
 			name = ExampleApp;
 			productName = ExampleApp;
@@ -241,10 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D09AEEDED822E8E933365F /* AppDelegate.swift in Sources */,
-				A98CB7C86FE6AEC3E11ADCA9 /* CNPJView.swift in Sources */,
-				09C9891C2380480D6543BD4E /* CNPJViewController.swift in Sources */,
-				4E0EF8ABBEA8A8C65A8A2606 /* CPFView.swift in Sources */,
-				C35E55F33B04625D390B778B /* CPFViewController.swift in Sources */,
 				BB5F0C8BC3B549C27F296A02 /* Extensions.swift in Sources */,
 				46ED7AA21804C8AB7CC8A0B4 /* SceneDelegate.swift in Sources */,
 			);
