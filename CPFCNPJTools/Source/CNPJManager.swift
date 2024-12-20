@@ -91,7 +91,7 @@ public class CNPJManager {
     /// ```swift
     /// let cnpjManager = CNPJManager()
     /// let fakeCNPJ = cnpjManager.generate()
-    /// print(fakeCNPJ)  // "11.444.777/0001-61"
+    /// print(fakeCNPJ)  // Randomly generated CNPJ
     /// ```
     private func generate() -> String {
         let get8RandomNumbers = (0..<8).compactMap({ _ in Int.random(in: 0...9) }) + [0, 0, 0, 1]
