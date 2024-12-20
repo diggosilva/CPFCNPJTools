@@ -37,8 +37,8 @@ public class CNPJAlphaNumManager {
     ///
     /// **Example:**
     /// ```swift
-    /// let cnpjManager = CNPJManager()
-    /// let status = cnpjManager.validate(cnpjAlphaNum: "12.ABC.345/01DE-35")
+    /// let cnpjAlphaNumManager = CNPJAlphaNumManager()
+    /// let status = cnpjAlphaNumManager.validate(cnpjAlphaNum: "12.ABC.345/01DE-35")
     /// print(status)  // .valid or .invalid
     /// ```
     /// * Important: *
