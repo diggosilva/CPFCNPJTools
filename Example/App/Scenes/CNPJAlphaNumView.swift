@@ -1,11 +1,12 @@
 //
-//  CNPJANView.swift
+//  CNPJAlphaNumView.swift
 //  ExampleApp
 //
 //  Created by Diggo Silva on 20/12/24.
 //
 
 import UIKit
+import CPFCNPJTools
 
 protocol CNPJAlphaNumViewDelegate: AnyObject {
     func validateCNPJAlphaNum()
@@ -59,7 +60,7 @@ class CNPJAlphaNumView: UIView {
     }()
     
     var result = ""
-//    var cnpjANManager = CNPJAlphaNumManager()
+    var cnpjAlphaNumManager = CNPJAlphaNumManager()
     weak var delegate: CNPJAlphaNumViewDelegate?
     
     override init(frame: CGRect) {
@@ -72,9 +73,9 @@ class CNPJAlphaNumView: UIView {
     }
     
     @objc private func cnpjAlphaNumTextFieldMask() {
-//        let maskCNPJAlphaNum = cnpjANManager.mask(cnpjAlphaNum: textField.text ?? "")
-//        textField.text = maskCNPJAlphaNum
-//        CNPJAlphaNumResult = maskCNPJAlphaNum
+        let maskCNPJAlphaNum = cnpjAlphaNumManager.mask(cnpjAlphaNum: textField.text ?? "")
+        textField.text = maskCNPJAlphaNum
+        result = maskCNPJAlphaNum
     }
     
     @objc private func validateCNPJAlphaNum() {
