@@ -45,10 +45,10 @@ extension CPFViewController: CPFViewDelegate {
         let cpfResult = cpfManager.validate(cpf: cpf)
         switch cpfResult {
         case .valid: return cpfView.resultLabel.text = "CPF válido."
-        case .cpfNull: return cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
-        case .invalidFormat: return cpfView.resultLabel.text = "CPF inválido.\nDeve ter 11 dígitos (apenas números)."
-        case .equalDigits: return cpfView.resultLabel.text = "CPF inválido.\nTodos os dígitos são iguais."
         case .invalid: return cpfView.resultLabel.text = "Número de CPF inválido."
+        case .cpfNull: return cpfView.resultLabel.text = "CPF não pode ser nulo ou vazio."
+        case .equalDigits: return cpfView.resultLabel.text = "CPF inválido.\nTodos os dígitos são iguais."
+        case .invalidFormat: return cpfView.resultLabel.text = "CPF inválido.\nDeve ter 11 dígitos (apenas números)."
         }
     }
     
