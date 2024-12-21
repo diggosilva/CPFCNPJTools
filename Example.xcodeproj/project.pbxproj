@@ -3,12 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		46ED7AA21804C8AB7CC8A0B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40560421C1FD370340A0832E /* SceneDelegate.swift */; };
 		5F2F40CAE89E8533908440C0 /* Pods_ExampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E05E0F7A66191941F66E34 /* Pods_ExampleApp.framework */; };
+		92FC946D2D176CE400796E2B /* CPFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC946A2D176CE400796E2B /* CPFView.swift */; };
+		92FC946E2D176CE400796E2B /* CPFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC946B2D176CE400796E2B /* CPFViewController.swift */; };
+		92FC94722D176CEB00796E2B /* CNPJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC946F2D176CEB00796E2B /* CNPJView.swift */; };
+		92FC94732D176CEB00796E2B /* CNPJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC94702D176CEB00796E2B /* CNPJViewController.swift */; };
+		92FC94772D176CED00796E2B /* CNPJDualFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC94742D176CED00796E2B /* CNPJDualFormatView.swift */; };
+		92FC94782D176CED00796E2B /* CNPJDualFormatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC94752D176CED00796E2B /* CNPJDualFormatViewController.swift */; };
 		A37E179AA6A2C4FBFD924B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C9BA92B4C370D66B9AB0595 /* Assets.xcassets */; };
 		B3D09AEEDED822E8E933365F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B469EE5E62EA7B070AA830 /* AppDelegate.swift */; };
 		BB5F0C8BC3B549C27F296A02 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41770CE94903B386BF7615 /* Extensions.swift */; };
@@ -22,17 +28,17 @@
 		5C9BA92B4C370D66B9AB0595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67B469EE5E62EA7B070AA830 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A53516ECC83C5AABFEEA484 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92FC946A2D176CE400796E2B /* CPFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFView.swift; sourceTree = "<group>"; };
+		92FC946B2D176CE400796E2B /* CPFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFViewController.swift; sourceTree = "<group>"; };
+		92FC946F2D176CEB00796E2B /* CNPJView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJView.swift; sourceTree = "<group>"; };
+		92FC94702D176CEB00796E2B /* CNPJViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJViewController.swift; sourceTree = "<group>"; };
+		92FC94742D176CED00796E2B /* CNPJDualFormatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJDualFormatView.swift; sourceTree = "<group>"; };
+		92FC94752D176CED00796E2B /* CNPJDualFormatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJDualFormatViewController.swift; sourceTree = "<group>"; };
 		9B41770CE94903B386BF7615 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B7E05E0F7A66191941F66E34 /* Pods_ExampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC48DC4593B91154442D4D5B /* Pods-ExampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleApp.debug.xcconfig"; path = "Target Support Files/Pods-ExampleApp/Pods-ExampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DFCEAAE68600F9CA99294FFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		92D9CFE72D15EA78006C34D8 /* CPF */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CPF; sourceTree = "<group>"; };
-		92D9CFE82D15EA87006C34D8 /* CNPJ */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CNPJ; sourceTree = "<group>"; };
-		92D9CFE92D15EA9B006C34D8 /* CNPJAlphaNum */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CNPJAlphaNum; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B231B22ABE28FEE48F9C3F81 /* Frameworks */ = {
@@ -101,11 +107,38 @@
 		901820CAFF048E2BA97C4B95 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				92D9CFE72D15EA78006C34D8 /* CPF */,
-				92D9CFE82D15EA87006C34D8 /* CNPJ */,
-				92D9CFE92D15EA9B006C34D8 /* CNPJAlphaNum */,
+				92FC946C2D176CE400796E2B /* CPF */,
+				92FC94712D176CEB00796E2B /* CNPJ */,
+				92FC94762D176CED00796E2B /* CNPJDualFormat */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		92FC946C2D176CE400796E2B /* CPF */ = {
+			isa = PBXGroup;
+			children = (
+				92FC946A2D176CE400796E2B /* CPFView.swift */,
+				92FC946B2D176CE400796E2B /* CPFViewController.swift */,
+			);
+			path = CPF;
+			sourceTree = "<group>";
+		};
+		92FC94712D176CEB00796E2B /* CNPJ */ = {
+			isa = PBXGroup;
+			children = (
+				92FC946F2D176CEB00796E2B /* CNPJView.swift */,
+				92FC94702D176CEB00796E2B /* CNPJViewController.swift */,
+			);
+			path = CNPJ;
+			sourceTree = "<group>";
+		};
+		92FC94762D176CED00796E2B /* CNPJDualFormat */ = {
+			isa = PBXGroup;
+			children = (
+				92FC94742D176CED00796E2B /* CNPJDualFormatView.swift */,
+				92FC94752D176CED00796E2B /* CNPJDualFormatViewController.swift */,
+			);
+			path = CNPJDualFormat;
 			sourceTree = "<group>";
 		};
 		C2BDF4DA858D000EAE0E5B79 /* App */ = {
@@ -145,11 +178,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				92D9CFE72D15EA78006C34D8 /* CPF */,
-				92D9CFE82D15EA87006C34D8 /* CNPJ */,
-				92D9CFE92D15EA9B006C34D8 /* CNPJAlphaNum */,
 			);
 			name = ExampleApp;
 			productName = ExampleApp;
@@ -244,6 +272,12 @@
 			files = (
 				B3D09AEEDED822E8E933365F /* AppDelegate.swift in Sources */,
 				BB5F0C8BC3B549C27F296A02 /* Extensions.swift in Sources */,
+				92FC94722D176CEB00796E2B /* CNPJView.swift in Sources */,
+				92FC94732D176CEB00796E2B /* CNPJViewController.swift in Sources */,
+				92FC946D2D176CE400796E2B /* CPFView.swift in Sources */,
+				92FC946E2D176CE400796E2B /* CPFViewController.swift in Sources */,
+				92FC94772D176CED00796E2B /* CNPJDualFormatView.swift in Sources */,
+				92FC94782D176CED00796E2B /* CNPJDualFormatViewController.swift in Sources */,
 				46ED7AA21804C8AB7CC8A0B4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

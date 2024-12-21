@@ -80,6 +80,18 @@ class CNPJManagerTests: XCTestCase {
         XCTAssertEqual(result, expectedMaskedCNPJ)
     }
     
+    func testValidateWhenTheCNPJHasNonNumericCharacters() {
+        let invalidCNPJ = "11444777000A61"
+        let result = sut.validate(cnpj: invalidCNPJ)
+        XCTAssertEqual(result, .invalidFormat)
+    }
+    
+    func testValidateWhenTheCNPJHasSpaces() {
+        let cnpjWithSpaces = "  11 444 777 / 0001 - 61 "
+        let result = sut.validate(cnpj: cnpjWithSpaces)
+        XCTAssertEqual(result, .valid)
+    }
+    
     override class func tearDown() {
         super .tearDown()
     }

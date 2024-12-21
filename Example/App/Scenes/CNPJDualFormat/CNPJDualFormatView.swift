@@ -1,5 +1,5 @@
 //
-//  CNPJAlphaNumView.swift
+//  CNPJDualFormatView.swift
 //  ExampleApp
 //
 //  Created by Diggo Silva on 20/12/24.
@@ -8,12 +8,12 @@
 import UIKit
 import CPFCNPJTools
 
-protocol CNPJAlphaNumViewDelegate: AnyObject {
-    func validateCNPJAlphaNum()
-    func generateCNPJAlphaNum()
+protocol CNPJDualFormatViewDelegate: AnyObject {
+    func validateCNPJDualFormat()
+    func generateCNPJDualFormat()
 }
 
-class CNPJAlphaNumView: UIView {
+class CNPJDualFormatView: UIView {
     lazy var resultLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +44,7 @@ class CNPJAlphaNumView: UIView {
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         btn.backgroundColor = .systemBlue
-        btn.addTarget(self, action: #selector(validateCNPJAlphaNum), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(validateCNPJDualFormat), for: .touchUpInside)
         return btn
     }()
     
@@ -55,13 +55,13 @@ class CNPJAlphaNumView: UIView {
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         btn.backgroundColor = .systemTeal
-        btn.addTarget(self, action: #selector(generateCNPJAlphaNum), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(generateCNPJDualFormat), for: .touchUpInside)
         return btn
     }()
     
     var result = ""
-    var cnpjAlphaNumManager = CNPJAlphaNumManager()
-    weak var delegate: CNPJAlphaNumViewDelegate?
+    var cnpjDualFormatManager = CNPJDualFormatManager()
+    weak var delegate: CNPJDualFormatViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,17 +73,17 @@ class CNPJAlphaNumView: UIView {
     }
     
     @objc private func cnpjAlphaNumTextFieldMask() {
-        let maskCNPJAlphaNum = cnpjAlphaNumManager.mask(cnpjAlphaNum: textField.text ?? "")
+        let maskCNPJAlphaNum = cnpjDualFormatManager.mask(cnpjDualFormat: textField.text ?? "")
         textField.text = maskCNPJAlphaNum
         result = maskCNPJAlphaNum
     }
     
-    @objc private func validateCNPJAlphaNum() {
-        delegate?.validateCNPJAlphaNum()
+    @objc private func validateCNPJDualFormat() {
+        delegate?.validateCNPJDualFormat()
     }
     
-    @objc private func generateCNPJAlphaNum() {
-        delegate?.generateCNPJAlphaNum()
+    @objc private func generateCNPJDualFormat() {
+        delegate?.generateCNPJDualFormat()
     }
     
     private func setupView() {
