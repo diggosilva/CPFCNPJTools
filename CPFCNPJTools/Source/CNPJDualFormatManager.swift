@@ -8,7 +8,7 @@
 import Foundation
 
 /// Enum representing the different statuses of a CNPJ Alphanumeric after validation.
-public enum CNPJAlphaNumStatus {
+public enum CNPJDualFormatStatus {
     case valid         // Valid CNPJ Alphanumeric.
     case invalid       // Invalid CNPJ Alphanumeric.
     case cnpjNull      // CNPJ Alphanumeric cannot be null or empty.
@@ -16,10 +16,10 @@ public enum CNPJAlphaNumStatus {
     case invalidFormat // Invalid CNPJ.\nCNPJ Alphanumeric must have 14 digits (only numbers and letters).
 }
 
-/// The `CNPJAlphaNumManager` class is responsible for validating, generating, and formatting CNPJ Alphanumeric (Brazilian National Registry of Legal Entities).
+/// The `CNPJDualFormatManager` class is responsible for validating, generating, and formatting CNPJ Alphanumeric (Brazilian National Registry of Legal Entities).
 ///
 /// It provides methods to validate a CNPJ Alphanumeric, generate fake CNPJ Alphanumeric, format a CNPJ Alphanumeric into a readable format, and apply a mask to the CNPJ Alphanumeric.
-public class CNPJAlphaNumManager {
+public class CNPJDualFormatManager {
 
     public init() {}
     
@@ -37,15 +37,15 @@ public class CNPJAlphaNumManager {
     ///
     /// **Example:**
     /// ```swift
-    /// let cnpjAlphaNumManager = CNPJAlphaNumManager()
-    /// let status = cnpjAlphaNumManager.validate(cnpjAlphaNum: "12.ABC.345/01DE-35")
+    /// let cnpjDualFormatManager = CNPJDualFormatManager()
+    /// let status = cnpjDualFormatManager.validate(cnpjDualFormat: "12.ABC.345/01DE-35")
     /// print(status)  // .valid or .invalid
     /// ```
     /// * Important: *
     /// This method removes any non-alphanumeric characters before validating the CNPJ Alphanumeric. It validates CNPJs that may include letters (A-Z) in addition to digits (0-9).
-    public func validate(cnpjAlphaNum: String) -> CNPJAlphaNumStatus {
+    public func validate(cnpjDualFormat: String) -> CNPJDualFormatStatus {
         // Clears the CPF, removing non-alphanumeric characters
-        let cleanedCNPJ = cnpjAlphaNum.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
+        let cleanedCNPJ = cnpjDualFormat.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
         
         guard cleanedCNPJ.count > 0 else { return .cnpjNull }
         
@@ -89,8 +89,8 @@ public class CNPJAlphaNumManager {
     ///
     /// **Example:**
     /// ```swift
-    /// let cnpjAlphaNumManager = CNPJAlphaNumManager()
-    /// let fakeCNPJAlphaNum = cnpjAlphaNumManager.generate()
+    /// let cnpjDualFormatManager = CNPJDualFormatManager()
+    /// let fakeCNPJAlphaNum = cnpjDualFormatManager.generate()
     /// print(fakeCNPJAlphaNum)  // Randomly generated CNPJ Alphanumeric
     /// ```
     public func generate() -> String {
@@ -134,9 +134,9 @@ public class CNPJAlphaNumManager {
         return format(randomCNPJString) ?? ""
     }
     
-    private func format(_ cnpjAlphaNum: String) -> String? {
-        guard cnpjAlphaNum.count == 14 else { return nil }
-        let formatted = "\(cnpjAlphaNum.prefix(2)).\(cnpjAlphaNum.dropFirst(2).prefix(3)).\(cnpjAlphaNum.dropFirst(5).prefix(3))/\(cnpjAlphaNum.dropFirst(8).prefix(4))-\(cnpjAlphaNum.suffix(2))"
+    private func format(_ cnpjDualFormat: String) -> String? {
+        guard cnpjDualFormat.count == 14 else { return nil }
+        let formatted = "\(cnpjDualFormat.prefix(2)).\(cnpjDualFormat.dropFirst(2).prefix(3)).\(cnpjDualFormat.dropFirst(5).prefix(3))/\(cnpjDualFormat.dropFirst(8).prefix(4))-\(cnpjDualFormat.suffix(2))"
         return formatted
     }
     
@@ -147,7 +147,7 @@ public class CNPJAlphaNumManager {
     
     /// Masks a given CNPJ Alphanumeric by adding typical separators `XX.XXX.XXX/XXXX-XX`.
     ///
-    /// - Parameter cnpjAlphaNum: The CNPJ Alphanumeric to be masked. It may contain non-Alphanumeric characters.
+    /// - Parameter cnpjDualFormat: The CNPJ Alphanumeric to be masked. It may contain non-Alphanumeric characters.
     /// - Returns: The CNPJ Alphanumeric masked in the format `XX.XXX.XXX/XXXX-XX`.
     ///
     /// - **Note**:
@@ -155,8 +155,8 @@ public class CNPJAlphaNumManager {
     ///
     /// - **Example**:
     /// ```swift
-    /// let cnpjAlphaNumManager = CNPJAlphaNumManager()
-    /// let maskedCnpjAlphaNum = cnpjAlphaNumManager.mask(cnpj: "12ABC34501DE35")
+    /// let cnpjDualFormatManager = CNPJDualFormatManager()
+    /// let maskedCnpjAlphaNum = cnpjDualFormatManager.mask(cnpjDualFormat: "12ABC34501DE35")
     /// print(maskedCnpjAlphaNum)  // "12.ABC.345/01DE-35"
     /// ```
     /// **Usage in UITextField Delegate**:
@@ -167,12 +167,12 @@ public class CNPJAlphaNumManager {
     /// func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     ///     guard let currentText = textField.text else { return true }
     ///     let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-    ///     textField.text = cnpjAlphaNumManager.mask(cnpj: newText)
+    ///     textField.text = cnpjDualFormatManager.mask(cnpjDualFormat: newText)
     ///     return false // Prevent the default text change, as we are setting it manually
     /// }
     /// ```
-    public func mask(cnpjAlphaNum: String) -> String {
-        var originalText = cnpjAlphaNum.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
+    public func mask(cnpjDualFormat: String) -> String {
+        var originalText = cnpjDualFormat.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
         
         if originalText.count > 14 {
             originalText = String(originalText.prefix(14))
@@ -191,5 +191,35 @@ public class CNPJAlphaNumManager {
             maskedText.append(char)
         }
         return maskedText
+    }
+    
+    /// Checks if the CNPJ contains only alphanumeric characters (letters A-Z and numbers 0-9).
+    ///
+    /// This method takes a string representing a CNPJ, removes all characters that are not numbers or uppercase letters (A-Z).
+    /// It then checks if the resulting string contains only numbers. If the string contains **only numbers**, the method returns `false`.
+    /// If the string contains any other characters (such as letters), it returns `true`.
+    ///
+    /// - Parameters:
+    ///   - cnpj: The CNPJ string to be validated.
+    ///
+    /// - Returns:
+    ///   - Returns `true` if the CNPJ contains any letters after removing non-alphanumeric characters (such as dots, slashes, and dashes).
+    ///     Returns `false` if the cleaned CNPJ contains only numbers.
+    ///
+    /// **Example:**
+    ///   ```swift
+    ///   let cnpjDualFormatManager = CNPJDualFormatManager()
+    ///
+    ///   let cnpjWithNumbers = "11.444.777/0001-61"
+    ///   let isAlphanumeric = cnpjDualFormatManager.isCNPJAlphanumeric(cnpjWithNumbers)
+    ///   print(isAlphanumeric)  // Output: false (the CNPJ contains only numbers after cleaning)
+    ///
+    ///   let cnpjWithLetters = "12.ABC.345/01DE-35"
+    ///   let isAlphanumeric = cnpjDualFormatManager.isCNPJAlphanumeric(cnpjWithLetters)
+    ///   print(isAlphanumeric)  // Output: true (the CNPJ contains letters after cleaning)
+    ///   ```
+    public func isCNPJAlphanumeric(_ cnpj: String) -> Bool {
+        let cnpjClean = cnpj.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
+        return !cnpjClean.allSatisfy({ $0.isNumber })
     }
 }
