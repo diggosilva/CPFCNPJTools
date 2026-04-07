@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "CPFCNPJTools",
+    platforms: [.iOS(.v13)],
     products: [
         .library(
             name: "CPFCNPJTools",

@@ -42,22 +42,25 @@ public class CPFManager {
     public func validate(cpf: String) -> CPFStatus {
         let cleanedCPF = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         
-        guard cleanedCPF.count > 0 else { return .cpfNull }
+        guard !cleanedCPF.isEmpty else { return .cpfNull }
         
         guard cleanedCPF.count == 11, cleanedCPF.allSatisfy({ $0.isNumber }) else { return .invalidFormat }
         
         if Set(cleanedCPF).count == 1 { return .equalDigits }
         
-        let cpfBaseDigits = cleanedCPF.prefix(9).compactMap({ Int(String($0)) })
-        let providedCheckDigits = cleanedCPF.suffix(2).compactMap({ Int(String($0)) })
+        let digits = cleanedCPF.compactMap({ Int(String($0)) })
         
-        let calculated1stCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: cpfBaseDigits, multiplyBy: 10)).truncatingRemainder(dividingBy: 11)
-        let firstCheckDigit = calculated1stCheckDigit < 2 ? 0 : 11 - Int(calculated1stCheckDigit)
+        // Primeiro dígito verificador
+        let sum1 = calculateCPFCheckSum(cpfBaseDigits: Array(digits.prefix(9)), weight: 10)
+        let dv1 = (sum1 * 10) % 11
+        let expectedDV1 = (dv1 == 10) ? 0 : dv1
         
-        let calculated2ndCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: cpfBaseDigits + [firstCheckDigit], multiplyBy: 11)).truncatingRemainder(dividingBy: 11)
-        let secondCheckDigit = calculated2ndCheckDigit < 2 ? 0 : 11 - Int(calculated2ndCheckDigit)
+        // Segundo dígito verificador
+        let sum2 = calculateCPFCheckSum(cpfBaseDigits: Array(digits.prefix(10)), weight: 11)
+        let dv2 = (sum2 * 10) % 11
+        let expectedDV2 = (dv2 == 10) ? 0 : dv2
         
-        if firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
+        if digits[9] == expectedDV1 && digits[10] == expectedDV2 {
             return .valid
         } else {
             return .invalid
@@ -65,16 +68,17 @@ public class CPFManager {
     }
     
     private func generate() -> String {
-        var get9RandomNumbers = (0..<9).compactMap({ _ in Int.random(in: 0...9) })
+        var digits = (0..<9).map { _ in Int.random(in: 0...9) }
         
-        let calculated1stCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: get9RandomNumbers, multiplyBy: 10)).truncatingRemainder(dividingBy: 11)
-        calculated1stCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated1stCheckDigit))
+        let sum1 = calculateCPFCheckSum(cpfBaseDigits: digits, weight: 10)
+        let dv1 = (sum1 * 10) % 11
+        digits.append(dv1 == 10 ? 0 : dv1)
         
-        let calculated2ndCheckDigit = Double(calculateCPFCheckSum(cpfBaseDigits: get9RandomNumbers, multiplyBy: 11)).truncatingRemainder(dividingBy: 11)
-        calculated2ndCheckDigit < 2 ? get9RandomNumbers.append(0) : get9RandomNumbers.append(11 - Int(calculated2ndCheckDigit))
+        let sum2 = calculateCPFCheckSum(cpfBaseDigits: digits, weight: 11)
+        let dv2 = (sum2 * 10) % 11
+        digits.append(dv2 == 10 ? 0 : dv2)
         
-        let generatedFakeCPF = get9RandomNumbers.map({ String($0) }).joined()
-        
+        let generatedFakeCPF = digits.map({ String($0) }).joined()
         return validate(cpf: generatedFakeCPF) == .valid ? generatedFakeCPF : generate()
     }
     
@@ -98,17 +102,15 @@ public class CPFManager {
     
     private func format(_ cpf: String) -> String? {
         guard cpf.count == 11 else { return nil }
-        let formattedCPF = "\(cpf.prefix(3)).\(cpf.dropFirst(3).prefix(3)).\(cpf.dropFirst(6).prefix(3))-\(cpf.suffix(2))"
-        return formattedCPF
+        return "\(cpf.prefix(3)).\(cpf.dropFirst(3).prefix(3)).\(cpf.dropFirst(6).prefix(3))-\(cpf.suffix(2))"
     }
     
-    private func calculateCPFCheckSum(cpfBaseDigits: [Int], multiplyBy: Int) -> Int {
-        var multiplyBy = multiplyBy
+    private func calculateCPFCheckSum(cpfBaseDigits: [Int], weight: Int) -> Int {
+        var currentWeight = weight
         var checkSum = 0
-        
         for digit in cpfBaseDigits {
-            checkSum += digit * multiplyBy
-            multiplyBy -= 1
+            checkSum += digit * currentWeight
+            currentWeight -= 1
         }
         return checkSum
     }
@@ -117,42 +119,13 @@ public class CPFManager {
     ///
     /// - Parameter cpf: The CPF to be masked. It may contain non-numeric characters.
     /// - Returns: The CPF masked in the format `XXX.XXX.XXX-XX`.
-    ///
-    /// - **Note**:
-    /// This method can be used in a `UITextField`'s delegate to format the CPF input while the user types.
-    ///
-    /// - **Example**:
-    /// ```swift
-    /// let cpfManager = CPFManager()
-    /// let maskedCpf = cpfManager.mask(cpf: "11144477735")
-    /// print(maskedCpf)  // "111.444.777-35"
-    /// ```
-    /// **Usage in UITextField Delegate**:
-    ///
-    /// - Tip: In your `UITextField` delegate, you can use this method to format the CPF input as follows:
-    ///
-    /// ```swift
-    /// func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    ///     guard let currentText = textField.text else { return true }
-    ///     let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-    ///     textField.text = cpfManager.mask(cpf: newText)
-    ///     return false // Prevent the default text change, as we are setting it manually
-    /// }
-    /// ```
     public func mask(cpf: String) -> String {
         var originalText = cpf.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        
-        if originalText.count > 11 {
-            originalText = String(originalText.prefix(11))
-        }
+        if originalText.count > 11 { originalText = String(originalText.prefix(11)) }
         var maskedText = ""
-        
         for (index, char) in originalText.enumerated() {
-            if index == 3 || index == 6 {
-                maskedText.append(".")
-            } else if index == 9 {
-                maskedText.append("-")
-            }
+            if index == 3 || index == 6 { maskedText.append(".") }
+            else if index == 9 { maskedText.append("-") }
             maskedText.append(char)
         }
         return maskedText
