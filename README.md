@@ -19,9 +19,9 @@ Uma biblioteca iOS escrita em Swift para validação, geração e máscara autom
 
 - [Requisitos](#requisitos)
 - [Funcionalidades](#funcionalidades)
-- [Instalação](#instalacao)
+- [Como Instalar](#como-instalar)
 - [Como Usar](#como-usar)
-- [Créditos](#creditos)
+- [Creditos](#creditos)
 
 ## Requisitos
 
@@ -36,7 +36,7 @@ Uma biblioteca iOS escrita em Swift para validação, geração e máscara autom
 - [x] **Máscara Inteligente:** Aplica a pontuação correta (CPF ou CNPJ) em tempo real conforme o tamanho do texto.
 - [x] **Geração de Dados:** Gera CPFs e CNPJs (Numéricos e Alfanuméricos) para testes.
 
-## Instalação
+## Como Instalar
 **SPM (Swift Package Manager)**
 No Xcode, vá em `File -> Add Package Dependencies` e insira a URL: https://github.com/diggosilva/CPFCNPJTools
 
@@ -77,13 +77,14 @@ Sinta-se à vontade para ajustar qualquer parte da documentação ao seu estilo 
 
 Se desejar mais alterações ou adições, entre em contato.
 
-# Créditos
+# Creditos
 
 - **Diggo Silva**
 - **Helio Mesquita**
 
 ```
 ```
+
 
 
 # CPFCNPJTools - 🇺🇸
@@ -103,13 +104,13 @@ A Swift iOS library for validation, generation, and automatic masking of CPF and
 
 - **Starting in July 2026**, the Brazilian Federal Revenue will implement the **Alphanumeric CNPJ**. This library is already prepared to validate both the old and the new formats seamlessly.
 
-## Content
+##Content
 
-- [Requisitos](#requisitos)
-- [Funcionalidades](#funcionalidades)
-- [Instalação](#instalacao)
-- [Como Usar](#como-usar)
-- [Créditos](#creditos)
+- [Requirements](#requirements)
+- [Features](#features)
+- [Installation](#installation)
+- [How to Use](#how-to-use)
+- [Credits](#credits)
 
 ## Required
 
@@ -124,9 +125,9 @@ A Swift iOS library for validation, generation, and automatic masking of CPF and
 - [x] **Smart Masking:** Applies the correct formatting (CPF or CNPJ) in real-time based on input length.
 - [x] **Data Generation:** Generates valid CPFs and CNPJs (Numeric and Alphanumeric) for testing.
 
-## Instalação
+## Installation
 **SPM (Swift Package Manager)**
-No Xcode, vá em `File -> Add Package Dependencies` e insira a URL: https://github.com/diggosilva/CPFCNPJTools
+In Xcode, go to `File -> Add Package Dependencies` and enter the URL: https://github.com/diggosilva/CPFCNPJTools
 
 ## How to Use
 
@@ -143,15 +144,15 @@ let status2 = manager.validate(cnpjDualFormat: "12.ABC.345/01DE-35") // .valid
 
 // Automatic Masking (Perfect for TextFields)
 let maskedCPF = manager.mask(cnpjDualFormat: "11144477735") // "111.444.777-35"
-let maskedCNPJ = manager.mask(cnpjDualFormat: "12ABC34501DE35") // "12.ABC.345/01DE-35"
- ```
+let maskedCNPJ = manager.mask(cnpjDualFormat: "12ABC34501DE35") // "12.ABC.345/01DE-35" 
+```
 
-# 2. Fake Data Generation
+# 2. Fake Data generation
 
 ```swift
 let manager = CNPJDualFormatManager()
-let newCNPJ = manager.generate() // Returns a valid formatted Alphanumeric CNPJ
- ```
+let newCNPJ = manager.generate() // Returns a valid formatted Alphanumeric CNPJ 
+```
 
 # Notes:
 
