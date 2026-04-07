@@ -20,7 +20,7 @@ public enum CNPJDualFormatStatus {
 ///
 /// It provides methods to validate a CNPJ Alphanumeric, generate fake CNPJ Alphanumeric, format a CNPJ Alphanumeric into a readable format, and apply a mask to the CNPJ Alphanumeric.
 public class CNPJDualFormatManager {
-
+    
     public init() {}
     
     /// Validates a given CNPJ Alphanumeric, checking if it is valid, properly formatted, and if the verification digits are correct.
@@ -44,45 +44,46 @@ public class CNPJDualFormatManager {
     /// * Important: *
     /// This method removes any non-alphanumeric characters before validating the CNPJ Alphanumeric. It validates CNPJs that may include letters (A-Z) in addition to digits (0-9).
     public func validate(cnpjDualFormat: String) -> CNPJDualFormatStatus {
-        // Clears the CNPJ, removing non-alphanumeric characters and forcing uppercase
-        let cleanedCNPJ = cnpjDualFormat.uppercased().replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
+        // 1. Limpeza
+        let cleaned = cnpjDualFormat.uppercased().replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
         
-        guard !cleanedCNPJ.isEmpty else { return .cnpjNull }
+        guard !cleaned.isEmpty else { return .cnpjNull }
         
-        // Checks if the CNPJ has 14 characters
-        guard cleanedCNPJ.count == 14 else { return .invalidFormat }
-        
-        // Checks if all characters are the same
-        if Set(cleanedCNPJ).count == 1 { return .equalDigits }
-        
-        // Divides the CNPJ into the first 12 characters and the last 2 (verification digits)
-        // Rule 2026: All characters (including DVs) follow Value = ASCII - 48
-        let allValues = cleanedCNPJ.compactMap({ Int($0.asciiValue ?? 48) - 48 })
-        let cnpjBaseDigits = Array(allValues.prefix(12))
-        let providedCheckDigits = Array(allValues.suffix(2))
-                
-        // Weights for the last 2 digits
-        let multiplyFirstBy = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
-        let multiplySecondBy = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
-        
-        // Calculates the first verification digit
-        let sum1 = calculateCNPJAlphaNumCheckSum(cnpj12Digits: cnpjBaseDigits, multiplyBy: multiplyFirstBy)
-        let firstCheckDigit = (sum1 % 11) < 2 ? 0 : 11 - (sum1 % 11)
-        
-        // Calculates the second verification digit
-        let sum2 = calculateCNPJAlphaNumCheckSum(cnpj12Digits: cnpjBaseDigits + [firstCheckDigit], multiplyBy: multiplySecondBy)
-        let secondCheckDigit = (sum2 % 11) < 2 ? 0 : 11 - (sum2 % 11)
-        
-        // Final check: DVs provided must be numeric characters only (0-9)
-        let dvPart = cleanedCNPJ.suffix(2)
-        guard dvPart.allSatisfy({ $0.isNumber }) else { return .invalid }
-        
-        // Compares the calculated verification digits with the provided ones
-        if firstCheckDigit == providedCheckDigits.first, secondCheckDigit == providedCheckDigits.last {
-            return .valid
-        } else {
-            return .invalid
+        // 2. Lógica para CPF (11 dígitos)
+        if cleaned.count == 11 {
+            // Verificamos se o CPFManager retorna .valid
+            let cpfStatus = CPFManager().validate(cpf: cleaned)
+            // Compara o enum do CPF com o valor .valid dele
+            return (String(describing: cpfStatus) == "valid") ? .valid : .invalid
         }
+        
+        // 3. Lógica para CNPJ (14 dígitos)
+        if cleaned.count == 14 {
+            if Set(cleaned).count == 1 { return .equalDigits }
+            
+            let allValues = cleaned.compactMap({ Int($0.asciiValue ?? 48) - 48 })
+            let cnpjBaseDigits = Array(allValues.prefix(12))
+            
+            let multiplyFirstBy = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+            let multiplySecondBy = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+            
+            let sum1 = calculateCNPJAlphaNumCheckSum(cnpj12Digits: cnpjBaseDigits, multiplyBy: multiplyFirstBy)
+            let firstCheckDigit = (sum1 % 11) < 2 ? 0 : 11 - (sum1 % 11)
+            
+            let sum2 = calculateCNPJAlphaNumCheckSum(cnpj12Digits: cnpjBaseDigits + [firstCheckDigit], multiplyBy: multiplySecondBy)
+            let secondCheckDigit = (sum2 % 11) < 2 ? 0 : 11 - (sum2 % 11)
+            
+            let providedFirst = allValues[12]
+            let providedSecond = allValues[13]
+            
+            if firstCheckDigit == providedFirst && secondCheckDigit == providedSecond {
+                return .valid
+            } else {
+                return .invalid
+            }
+        }
+        
+        return .invalidFormat
     }
     
     /// Generates a random valid CNPJ Alphanumeric, without formatting.
