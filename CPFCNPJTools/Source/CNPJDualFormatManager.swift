@@ -119,15 +119,29 @@ public class CNPJDualFormatManager {
     }
     
     public func mask(cnpjDualFormat: String) -> String {
-        var originalText = cnpjDualFormat.uppercased().replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
-        if originalText.count > 14 { originalText = String(originalText.prefix(14)) }
+        // 1. Limpa tudo para não acumular pontos sobre pontos
+        let clean = cnpjDualFormat.uppercased().replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
+        
+        // 2. Define o limite máximo de 14 caracteres
+        let text = String(clean.prefix(14))
+        let count = text.count
         
         var maskedText = ""
-        for (index, char) in originalText.enumerated() {
-            if index == 2 || index == 5 { maskedText.append(".") }
-            else if index == 8 { maskedText.append("/") }
-            else if index == 12 { maskedText.append("-") }
-            maskedText.append(char)
+        let characters = Array(text)
+        
+        for i in 0..<characters.count {
+            // Se tiver 11 ou menos, usa o desenho do CPF (###.###.###-##)
+            if count <= 11 {
+                if i == 3 || i == 6 { maskedText.append(".") }
+                else if i == 9 { maskedText.append("-") }
+            }
+            // Se tiver mais de 11, usa o desenho do CNPJ (##.###.###/####-##)
+            else {
+                if i == 2 || i == 5 { maskedText.append(".") }
+                else if i == 8 { maskedText.append("/") }
+                else if i == 12 { maskedText.append("-") }
+            }
+            maskedText.append(characters[i])
         }
         return maskedText
     }
