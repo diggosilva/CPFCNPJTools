@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
-//  CPF-CNPJ-TOOLS
+//  CPFViewController.swift
+//  Example
 //
-//  Created by Diggo Silva on 16/11/24.
+//  Created by Diggo Silva on 07/04/26.
 //
 
 import UIKit
@@ -25,7 +25,7 @@ class CPFViewController: UIViewController {
     }
     
     private func setNavBar() {
-        title = "Validador CPF"
+        navigationItem.title = "Validador CPF"
     }
     
     private func setDelegatesAndDataSources() {

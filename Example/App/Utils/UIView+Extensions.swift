@@ -1,8 +1,8 @@
 //
-//  Extensions.swift
-//  CPF-CNPJ-TOOLS
+//  UIView+Extensions.swift
+//  Example
 //
-//  Created by Diggo Silva on 16/11/24.
+//  Created by Diggo Silva on 07/04/26.
 //
 
 import UIKit

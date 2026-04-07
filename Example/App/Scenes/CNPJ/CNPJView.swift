@@ -1,8 +1,8 @@
 //
 //  CNPJView.swift
-//  SampleApp
+//  Example
 //
-//  Created by Diggo Silva on 19/11/24.
+//  Created by Diggo Silva on 07/04/26.
 //
 
 import UIKit

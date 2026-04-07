@@ -1,8 +1,8 @@
 //
-//  CNPJDualFormatView.swift
-//  ExampleApp
+//  CNPJDualFormatViewDelegate.swift
+//  Example
 //
-//  Created by Diggo Silva on 20/12/24.
+//  Created by Diggo Silva on 07/04/26.
 //
 
 import UIKit

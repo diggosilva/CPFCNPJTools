@@ -1,8 +1,8 @@
 //
 //  CNPJViewController.swift
-//  SampleApp
+//  Example
 //
-//  Created by Diggo Silva on 19/11/24.
+//  Created by Diggo Silva on 07/04/26.
 //
 
 import UIKit
@@ -25,7 +25,7 @@ class CNPJViewController: UIViewController {
     }
     
     private func setNavBar() {
-        title = "Validador CNPJ"
+        navigationItem.title = "Validador CNPJ"
     }
     
     private func setDelegatesAndDataSources() {

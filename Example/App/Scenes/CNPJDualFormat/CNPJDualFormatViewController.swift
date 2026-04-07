@@ -1,8 +1,8 @@
 //
 //  CNPJDualFormatViewController.swift
-//  ExampleApp
+//  Example
 //
-//  Created by Diggo Silva on 20/12/24.
+//  Created by Diggo Silva on 07/04/26.
 //
 
 import UIKit
@@ -25,7 +25,7 @@ class CNPJDualFormatViewController: UIViewController {
     }
     
     private func setNavBar() {
-        title = "CNPJ Alfanumérico"
+        navigationItem.title = "CNPJ Alfanumérico"
     }
     
     private func setDelegatesAndDataSources() {
