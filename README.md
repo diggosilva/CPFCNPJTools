@@ -9,17 +9,11 @@
     </a>
 </p>
 
-Uma biblioteca iOS escrita em Swift para validação, geração e manipulação de números de CPF e CNPJ de forma simples e eficiente. Ideal para testes e preenchimento de formulários.
+Uma biblioteca iOS escrita em Swift para validação, geração e máscara automática de números de CPF e CNPJ (incluindo o novo padrão Alfanumérico 2026).
 
-## Diferença entre CPF, CNPJ e CNPJ Alfanumérico
+## O que há de novo?
 
-- **CPF (Cadastro de Pessoas Físicas):** O CPF é o número de registro individual utilizado pela Receita Federal para identificar pessoas físicas. É composto por 11 dígitos (XXX.XXX.XXX-XX).
-
-- **CNPJ (Cadastro Nacional da Pessoa Jurídica):** O CNPJ é o número utilizado para identificar empresas e outras entidades jurídicas. É composto por 14 dígitos (XX.XXX.XXX/0001-XX).
-
-- **CNPJ Alfanumérico:** Devido ao crescimento do número de empresas e à futura escassez de combinações puramente numéricas, a Receita Federal implementará o **CNPJ Alfanumérico**.
-
-- O **CNPJ Alfanumérico será atribuído a partir de julho de 2026**, exclusivamente para novos registros. Números de CNPJ já existentes **não sofrerão alterações**.
+- **A partir de julho de 2026**, a Receita Federal implementará o **CNPJ Alfanumérico**. Esta biblioteca já está preparada para validar tanto o formato antigo quanto o novo de forma híbrida.
 
 ## Conteúdo
 
@@ -37,92 +31,39 @@ Uma biblioteca iOS escrita em Swift para validação, geração e manipulação 
 
 ## Funcionalidades
 
-- [x] **Validação de CPF:** Verifica se um CPF é válido seguindo as regras da Receita Federal.
-- [x] **Validação de CNPJ:** Verifica se um CNPJ é válido de acordo com as regras fiscais.
-- [x] **Validação de CNPJ Alfanumérico:** Verifica se o novo formato alfanumérico é válido.
-- [x] **Geração de CPF Fictício:** Gera um CPF válido aleatoriamente.
-- [x] **Geração de CNPJ Fictício:** Gera um CNPJ válido aleatoriamente.
-- [x] **Geração de CNPJ Alfanumérico Fictício:** Gera um CNPJ Alfanumérico válido aleatoriamente.
+- [x] **Validação Híbrida:** Identifica e valida CPF ou CNPJ automaticamente.
+- [x] **Suporte Alfanumérico:** Preparada para o novo padrão de CNPJ 2026.
+- [x] **Máscara Inteligente:** Aplica a pontuação correta (CPF ou CNPJ) em tempo real conforme o tamanho do texto.
+- [x] **Geração de Dados:** Gera CPFs e CNPJs (Numéricos e Alfanuméricos) para testes.
 
-## Instalação com CocoaPods
-
-Adicione ao seu Podfile:
-
-```sh
-$ pod 'CPFCNPJTools'
-```
-
-Então rode:
-
-```sh
-$ pod install
-```
-
-## Instalação com SPM (Swift Package Manager) (Xcode 11+)
-No Xcode, vá em File -> Add Package Dependencies e insira a URL: https://github.com/diggosilva/CPFCNPJTools.
+## Instalação
+**SPM (Swift Package Manager)**
+No Xcode, vá em `File -> Add Package Dependencies` e insira a URL: https://github.com/diggosilva/CPFCNPJTools
 
 ## Como Usar
 
-# 1. CPF
+# 1. Validação e Máscara Dual (Recomendado)
 
-### 1.1 Validar CPF
-
-- Para validar um CPF, simplesmente use o método `validate(cpf: String) -> CPFStatus`:
+- O `CNPJDualFormatManager` é a forma mais simples de lidar com campos que aceitam tanto CPF quanto CNPJ.
 
 ```swift
-let cpfManager = CPFManager()
-let status = cpfManager.validate(cpf: "11144477735")
-print(status) // .valid, .invalid, .cpfNull, .equalDigits or .invalidFormat
+let manager = CNPJDualFormatManager()
+
+// Validação Inteligente
+let status = manager.validate(cnpjDualFormat: "111.444.777-35") // .valid
+let status2 = manager.validate(cnpjDualFormat: "12.ABC.345/01DE-35") // .valid
+
+// Máscara Automática (Ideal para TextField)
+let maskedCPF = manager.mask(cnpjDualFormat: "11144477735") // "111.444.777-35"
+let maskedCNPJ = manager.mask(cnpjDualFormat: "12ABC34501DE35") // "12.ABC.345/01DE-35"
  ```
 
-### 1.2 Gerar CPF falso mascarado
-
-- Para gerar um CPF falso com máscara, simplemente use o método`generateMasked()`:
+# 2. Geração de Dados Fictícios
 
 ```swift
-let cpfManager = CPFManager()
-let fakeCPFMasked = cpfManager.generateMasked()
-print(fakeCPFMasked) // "111.444.777-35"  // Randomly generated CPF
-```
-# CNPJ
-
-### 2.1 Validar CNPJ
-
-- Para validar um CNPJ, simplesmente use o método `validate(cnpj: String) -> CNPJStatus)`:
-
-```swift
-let cnpjManager = CNPJManager()
-let status = cnpjManager.validate(cnpj: "11444777000135")
-print(status) // .valid, .invalid, .cnpjNull, .equalDigits or .invalidFormat
-```
-
-### 2.2 Gerar CNPJ falso mascarado
-
-```swift
-let cnpjManager = CNPJManager()
-let fakeCNPJMasked = cnpjManager.generateMasked()
-print(fakeCNPJMasked) // "11.444.777/0001-35"  // Randomly generated CNPJ
-```
-
-# CNPJ Alfanumérico
-
-### 3.1 Validar o formato dual do CNPJ
-
-- Para validar um CNPJ alfanumérico, basta usar o método `validate(cnpjDualFormat: String) -> CNPJDualFormatStatus`:
-
-```swift
-let cnpjDualFormatManager = CNPJDualFormatManager()
-let status = cnpjDualFormatManager.validate(cnpjDualFormat: "12ABC34501DE35")
-print(status) // .valid, .invalid, .cnpjNull, .equalDigits ou .invalidFormat
-```
-
-### 3.2 Gerar um CNPJ falso com formato dual mascarado
-
-```swift
-let cnpjDualFormatManager = CNPJDualFormatManager()
-let fakeCNPJAlphaNum = cnpjDualFormatManager.generate()
-print(fakeCNPJAlphaNum) // "12.ABC.345/01DE-35" // CNPJ alfanumérico gerado aleatoriamente
-```
+let manager = CNPJDualFormatManager()
+let newCNPJ = manager.generate() // Retorna um CNPJ Alfanumérico válido formatado
+ ```
 
 # Observações:
 
@@ -145,9 +86,6 @@ Se desejar mais alterações ou adições, entre em contato.
 ```
 
 
-
-
-
 # CPFCNPJTools - 🇺🇸
 
 <p align="center">
@@ -159,136 +97,78 @@ Se desejar mais alterações ou adições, entre em contato.
     </a>
 </p>
 
-A iOS application written in Swift, this project is a library for CocoaPods that allows you to validate, generate and manipulate CPF and CNPJ numbers in a simple and efficient way. Ideal for testing and filling out forms.
+A Swift iOS library for validation, generation, and automatic masking of CPF and CNPJ numbers (including the new 2026 Alphanumeric standard).
 
-## Difference between (CPF), (CNPJ) and (CNPJ Alphanumeric)
+## What's new?
 
-- CPF (Individual Taxpayer Registry): The CPF is an individual registration number used by the Brazilian Federal Revenue Service to identify an individual. The CPF is made up of 11 digits (XXX.XXX.XXX-XX). It is used for various purposes, such as opening bank accounts, issuing invoices, and filing taxes.
+- **Starting in July 2026**, the Brazilian Federal Revenue will implement the **Alphanumeric CNPJ**. This library is already prepared to validate both the old and the new formats seamlessly.
 
-- CNPJ (National Registry of Legal Entities): The CNPJ is a registration number used by the Brazilian Federal Revenue Service to identify companies or other legal entities. The CNPJ is made up of 14 digits (XX.XXX.XXX/0001-XX). It is used to formalize the existence of a company, allowing it to carry out commercial activities, such as issuing invoices, paying taxes, among others.
+## Content
 
-- In view of the continuous growth in the number of companies and the imminent exhaustion of available CNPJ numbers, the Brazilian Federal Revenue Service is launching the **Alphanumeric CNPJ**. This solution aims to facilitate the identification of all companies and improve the business environment, contributing to the economic and social development of Brazil.
+- [Requisitos](#requisitos)
+- [Funcionalidades](#funcionalidades)
+- [Instalação](#instalacao)
+- [Como Usar](#como-usar)
+- [Créditos](#creditos)
 
-- The **Alphanumeric CNPJ will be assigned, starting in July 2026**, exclusively to new registrations. Existing CNPJ numbers will not undergo any change, that is, **those who are already registered with the CNPJ will keep their number valid!**
+## Required
 
-## Contents
-
-- [Requirements](#requirements)
-- [Functionalities](#functionalities)
-- [Instalation](#instalation)
-- [How to use](#howToUse)
-- [Credits](#credits)
-
-## Requirements
-
-- iOS 17.0 or later
-- Xcode 15.0 or later
-- Swift 5.0 or later
+- iOS 17.0+
+- Xcode 15.0+
+- Swift 5.0+
 
 ## Functionalities
 
-- [x] CPF Validation: Check if a CPF number is valid, following the rules of the Federal Revenue Service.
-- [x] CNPJ Validation: Check if a CNPJ number is valid, according to tax rules.
-- [x] CNPJ Alphanumeric Validation: Check if a CNPJ Alphanumeric is valid, according to tax rules.
-- [x] Fake CPF generation: Generate a valid CPF number randomly.
-- [x] Fake CNPJ generation: Generate a valid CNPJ number randomly.
-- [x] Fake CNPJ Alphanumeric generation: Generate a valid CNPJ Alphanumeric randomly.
+- [x] **Hybrid Validation:** Automatically identifies and validates CPF or CNPJ.
+- [x] **Alphanumeric Support:** Ready for the new 2026 CNPJ standard.
+- [x] **Smart Masking:** Applies the correct formatting (CPF or CNPJ) in real-time based on input length.
+- [x] **Data Generation:** Generates valid CPFs and CNPJs (Numeric and Alphanumeric) for testing.
 
-## Instalation with Cocoapods
+## Instalação
+**SPM (Swift Package Manager)**
+No Xcode, vá em `File -> Add Package Dependencies` e insira a URL: https://github.com/diggosilva/CPFCNPJTools
 
-Add the dependency to your Podfile:
+## How to Use
 
-```sh
-$ pod 'CPFCNPJTools'
-```
+# 1. Dual Validation and Masking (Recommended)
 
-Then run:
-
-```sh
-$ pod install
-```
-
-## Instalation with (SPM) - Swift Package Manager (Xcode 11+)
-
-[Swift Package Manager (SPM)](https://www.swift.org/documentation/package-manager) is a tool for managing the distribution of Swift code as well as C-family dependency. From Xcode 11, SwiftPM got natively integrated with Xcode.
-
-CPFCNPJTools support SPM from version 5.1.0. To use SPM, you should use Xcode to open your project. Click `File` -> `Add Package Dependencies`, enter [CPFCNPJTools repo's URL](https://github.com/diggosilva/CPFCNPJTools). 
-
-## HowToUse
-
-# CPF
-
-### 1.1 Validate CPF
-
-- To validate a CPF, simply use the `validate(cpf: String) -> CPFStatus` method:
+- `CNPJDualFormatManager` is the easiest way to handle fields that accept both CPF and CNPJ.
 
 ```swift
-let cpfManager = CPFManager()
-let status = cpfManager.validate(cpf: "11144477735")
-print(status) // .valid, .invalid, .cpfNull, .equalDigits or .invalidFormat
+let manager = CNPJDualFormatManager()
+
+// Smart Validation
+let status = manager.validate(cnpjDualFormat: "111.444.777-35") // .valid
+let status2 = manager.validate(cnpjDualFormat: "12.ABC.345/01DE-35") // .valid
+
+// Automatic Masking (Perfect for TextFields)
+let maskedCPF = manager.mask(cnpjDualFormat: "11144477735") // "111.444.777-35"
+let maskedCNPJ = manager.mask(cnpjDualFormat: "12ABC34501DE35") // "12.ABC.345/01DE-35"
  ```
 
-### 1.2 Generate Fake CPF masked
-
-- To generate a fake CPF with mask, simply use the `generateMasked()` method:
+# 2. Fake Data Generation
 
 ```swift
-let cpfManager = CPFManager()
-let fakeCPFMasked = cpfManager.generateMasked()
-print(fakeCPFMasked) // "111.444.777-35"  // Randomly generated CPF
-```
-
-# CNPJ
-
-### 2.1 Validate CNPJ
-
-- To validate a CNPJ, simply use the `validate(cnpj: String) -> CNPJStatus)` method:
-
-```swift
-let cnpjManager = CNPJManager()
-let status = cnpjManager.validate(cnpj: "11444777000135")
-print(status) // .valid, .invalid, .cnpjNull, .equalDigits or .invalidFormat
-```
-
-### 2.2 Generate Fake CNPJ masked
-
-```swift
-let cnpjManager = CNPJManager()
-let fakeCNPJMasked = cnpjManager.generateMasked()
-print(fakeCNPJMasked) // "11.444.777/0001-35"  // Randomly generated CNPJ
-```
-
-# CNPJ Alphanumeric
-
-### 3.1 Validate CNPJ Dual Format
-
-- To validate a CNPJ Alphanumeric, simply use the `validate(cnpjDualFormat: String) -> CNPJDualFormatStatus` method:
-
-```swift
-let cnpjDualFormatManager = CNPJDualFormatManager()
-let status = cnpjDualFormatManager.validate(cnpjDualFormat: "12ABC34501DE35")
-print(status) // .valid, .invalid, .cnpjNull, .equalDigits or .invalidFormat
-```
-
-### 3.2 Generate Fake CNPJ Dual Format masked
-
-```swift
-let cnpjDualFormatManager = CNPJDualFormatManager()
-let fakeCNPJAlphaNum = cnpjDualFormatManager.generate()
-print(fakeCNPJAlphaNum) // "12.ABC.345/01DE-35"  // Randomly generated CNPJ Alphanumeric
-```
+let manager = CNPJDualFormatManager()
+let newCNPJ = manager.generate() // Returns a valid formatted Alphanumeric CNPJ
+ ```
 
 # Notes:
 
-- The file is formatted in **Markdown** (`.md`), which is the standard for GitHub readme files.
+- The file is formatted in Markdown (.md), which is the standard for GitHub readme files.
+
 - The methods are clearly described, with code examples in Swift to show how to use the library.
+
 - The explanations and comments are all in English, making the documentation accessible to a wider audience.
 
-Feel free to tweak any parts of the documentation to fit your style or add any additional information that you think is important! 
+- Feel free to tweak any parts of the documentation to fit your style or add any additional information that you think is important!
 
-If you'd like any more changes or additions, let me know.
+- If you'd like any more changes or additions, let me know.
 
 # Credits
 
 - **Diggo Silva**
 - **Helio Mesquita**
+
+```
+```
